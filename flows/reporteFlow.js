@@ -1,6 +1,6 @@
 const { addKeyword } = require('@bot-whatsapp/bot')
 
-const reporteFlow = addKeyword('1')
+const reporteFlow = addKeyword('AQUIENTRA_SI_PONE_1')
   .addAnswer(
     ['Describe tu error '],
     {

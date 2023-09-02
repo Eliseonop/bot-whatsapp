@@ -5,14 +5,14 @@ const { estadoFlow } = require('./estatoFlow')
 
 let intentos = 0
 
-const flowFin = addKeyword(['FIN'], {
-  sensitive: true
-}).addAnswer(['Adios'], null, (_, { endFlow }) => {
-  return endFlow('Adios')
-})
+// const flowFin = addKeyword(['FIN'], {
+//   sensitive: true
+// }).addAnswer(['Adios'], null, (_, { endFlow }) => {
+//   return endFlow('Adios')
+// })
 
-const inicioFlow = addKeyword('tcontur', {
-  sensitive: true
+const inicioFlow = addKeyword('hola', {
+  sensitive: false
 })
   .addAnswer(
     [
