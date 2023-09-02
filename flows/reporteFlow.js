@@ -1,0 +1,27 @@
+const { addKeyword } = require('@bot-whatsapp/bot')
+
+const reporteFlow = addKeyword('1')
+  .addAnswer(
+    ['Describe tu error '],
+    {
+      capture: true
+    },
+    async (ctx, { flowDynamic, state }) => {
+      state.update({
+        descripcion: ctx.body
+      })
+    }
+  )
+  .addAnswer(
+    [
+      'Que etiqueta o titulo le pondrias',
+      'Ejemplo: Error al obtener periodos...'
+    ],
+    {
+      capture: true
+    }
+  )
+
+module.exports = {
+  reporteFlow
+}
