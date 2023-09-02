@@ -2,10 +2,10 @@
   key: {
     remoteJid: '14155238886@s.whatsapp.net',
     fromMe: false,
-    id: 'CE79C9C369D15D342C',
+    id: '1B3C767CBEBE72318C',
     participant: undefined
   },
-  messageTimestamp: 1693664365,
+  messageTimestamp: 1693665299,
   pushName: '14155238886',
   broadcast: false,
   message: Message {
@@ -20,8 +20,8 @@
   from: '14155238886'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_05afc7a3-ad92-451e-9a7b-f1d3a9ab57d0',
-  keyword: 'key_a7e2fa82-58f7-4c40-8a37-a69ab7f3928e',
+  ref: 'ans_5308e36a-effd-45f7-a56f-df430a156581',
+  keyword: 'key_33b8fcb5-b235-4d7e-82c7-b7ea9ef4c693',
   answer: '🙌 Sistema de reportes de Errores de Tcontur 🙌\n🧐* Verificando numero...*',
   options: {
     media: null,
@@ -33,5 +33,24 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '1819722cd3395ef0052d7211d6f847e2'
+  refSerialize: '70d7264b6d67f17bbde870449039f87f'
 }
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_36e13de0-4810-462a-8669-b49628da86f0',
+  keyword: 'ans_5308e36a-effd-45f7-a56f-df430a156581',
+  answer: 'Seleccione una opcion escribiendo el numero\n' +
+    '*[1] Reportar un error*\n' +
+    '*[2] Ver estado de un reporte*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 2500,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'a70ae5f62197f7b6bba4de5aaaa0a33e'
+}
+Error al encolar: Cannot read properties of undefined (reading 'answer')
