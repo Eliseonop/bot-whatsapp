@@ -2,10 +2,10 @@
   key: {
     remoteJid: '14155238886@s.whatsapp.net',
     fromMe: false,
-    id: '1B3C767CBEBE72318C',
+    id: 'C0A1AC98CD8B754A5D',
     participant: undefined
   },
-  messageTimestamp: 1693665299,
+  messageTimestamp: 1693673584,
   pushName: '14155238886',
   broadcast: false,
   message: Message {
@@ -20,37 +20,99 @@
   from: '14155238886'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_5308e36a-effd-45f7-a56f-df430a156581',
-  keyword: 'key_33b8fcb5-b235-4d7e-82c7-b7ea9ef4c693',
-  answer: '🙌 Sistema de reportes de Errores de Tcontur 🙌\n🧐* Verificando numero...*',
+  ref: 'ans_5906cfa4-0c1e-40ca-91f0-799d021cf443',
+  keyword: 'key_805c5dc0-2cbb-4923-a65d-eba11fa360f9',
+  answer: '🙌 Sistema de reportes de Errores de Tcontur 🙌\n🧐 *Verificando numero...*',
   options: {
     media: null,
     buttons: [],
     capture: false,
     child: null,
-    delay: 2500,
+    delay: 1000,
     nested: [],
     keyword: {},
     callback: true
   },
-  refSerialize: '70d7264b6d67f17bbde870449039f87f'
+  refSerialize: 'c1e15e8f70547ce714f8921f85726ede'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_36e13de0-4810-462a-8669-b49628da86f0',
-  keyword: 'ans_5308e36a-effd-45f7-a56f-df430a156581',
+  ref: 'ans_484283d4-df34-4561-b86e-0cc2a51d4730',
+  keyword: 'ans_5906cfa4-0c1e-40ca-91f0-799d021cf443',
   answer: 'Seleccione una opcion escribiendo el numero\n' +
     '*[1] Reportar un error*\n' +
     '*[2] Ver estado de un reporte*',
   options: {
     media: null,
     buttons: [],
-    capture: false,
+    capture: true,
     child: null,
-    delay: 2500,
+    delay: 1000,
     nested: [],
     keyword: {},
     callback: true
   },
-  refSerialize: 'a70ae5f62197f7b6bba4de5aaaa0a33e'
+  refSerialize: '60518bbb8823b461c36c281e08a3f5f1'
 }
-Error al encolar: Cannot read properties of undefined (reading 'answer')
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: '8C15389FCE30BDB7BF',
+    participant: undefined
+  },
+  messageTimestamp: 1693673591,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: '2',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: '2',
+  from: '14155238886'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: 'E5BFC17C84AED7A7DC',
+    participant: undefined
+  },
+  messageTimestamp: 1693673600,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: 'AAC',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: 'AAC',
+  from: '14155238886'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: '622B5BA824063B3F3E',
+    participant: undefined
+  },
+  messageTimestamp: 1693673608,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: 'AAC',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: 'AAC',
+  from: '14155238886'
+}

@@ -1,8 +1,7 @@
 const usuario = process.env.EMAIL_USER
-const apikey = process.env.APIKEY_JIRA
-
-const credential = Buffer.from(usuario + ':' + apikey).toString('base64')
+const password = process.env.APIKEY_JIRA
+const credentials = Buffer.from(`${usuario}:${password}`).toString('base64')
 
 module.exports = {
-  credential
+  credentials
 }

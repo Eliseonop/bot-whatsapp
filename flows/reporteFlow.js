@@ -19,6 +19,15 @@ const reporteFlow = addKeyword('1')
     ],
     {
       capture: true
+    },
+    async (ctx, { flowDynamic, state }) => {
+      state.update({
+        title: ctx.body
+      })
+
+      const myState = state.getMyState()
+
+      console.log(myState)
     }
   )
 
