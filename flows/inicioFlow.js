@@ -3,8 +3,13 @@ const { addKeyword } = require('@bot-whatsapp/bot')
 const inicioFlow = addKeyword('tcontur', {
   sensitive: true
 }).addAnswer(
-  ['dame un momento*...'],
-  null,
+  [
+    '🙌 Sistema de reportes de Errores de Tcontur 🙌',
+    '🧐* Verificando numero...*'
+  ],
+  {
+    delay: 2500
+  },
   async (ctx, { flowDynamic, state }) => {
     switch (ctx.from) {
       case '1':
