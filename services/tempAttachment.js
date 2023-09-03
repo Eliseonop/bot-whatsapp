@@ -1,54 +1,45 @@
 const { credentials } = require('../utils/credential')
+const axios = require('axios')
+// const { createReadStream } = require('fs')
 const FormData = require('form-data')
 const URLAPI = process.env.APIURL_JIRA
 
-async function uploadImageToJira (imageBuffer, type) {
-  console.log('el buffer', imageBuffer)
-  console.log('el tipo', type)
+async function temporalAttachment (imageBuffer, type) {
   const formData = new FormData()
   const parts = type.split('/')
-  console.log('form data 1', formData)
 
   const extension = parts[1]
 
   const nombreArchivo = `file${Date.now().toString()}.${extension}`
-  // const file = new File([imageBuffer], nombreArchivo, {
-  //   type: `image/${extension}`
-  // })
-  console.log('soy el nomnbre del archivo', nombreArchivo)
-  formData.append('file', imageBuffer, {
-    filename: nombreArchivo,
-    type: `image/${extension}`
-  })
-  // console.log('form data 2', formData)
+
+  formData.append('file', imageBuffer, nombreArchivo)
+
+  const headers = formData.getHeaders()
+
   try {
-    const response = await fetch(
+    const response = await axios.post(
       URLAPI + '/servicedesk/1/attachTemporaryFile',
+      formData,
       {
-        method: 'POST',
         headers: {
+          // method: 'POST',
+          // headers: {
           Authorization: 'Basic ' + credentials,
-          'Content-Type': 'multipart/form-data',
-          'X-Atlassian-Token': 'no-check'
-        },
-        body: formData
+          'X-Atlassian-Token': 'no-check',
+          ...headers
+          // }
+        }
       }
     )
 
-    console.log('soy la resonse 28', response)
-    const data = await response.json()
+    const data = await response.data
 
-    // console.log('soy la data', data.body)
-    // const temporaryAttachmentIds = await data.temporaryAttachments.map(
-    //   ({ temporaryAttachmentId }) => temporaryAttachmentId
-    // )
-
-    // console.log('la respuesta', temporaryAttachmentIds)
     return data
   } catch (error) {
     console.log('⚡☢☣⚡')
     console.log(error)
+    return error
   }
 }
 
-module.exports = { uploadImageToJira }
+module.exports = { temporalAttachment }

@@ -6,7 +6,7 @@ const {
   addKeyword
 } = require('@bot-whatsapp/bot')
 require('dotenv').config()
-const { writeFileSync, readFileSync } = require('fs')
+// const { writeFileSync, readFileSync } = require('fs')
 const { downloadMediaMessage } = require('@whiskeysockets/baileys')
 
 const QRPortalWeb = require('@bot-whatsapp/portal')
@@ -15,7 +15,8 @@ const MockAdapter = require('@bot-whatsapp/database/mock')
 const { inicioFlow } = require('./flows/inicioFlow')
 const { reporteFlow } = require('./flows/reporteFlow')
 const { estadoFlow } = require('./flows/estatoFlow')
-const { uploadImageToJira } = require('./services/tempAttachment')
+const { temporalAttachment } = require('./services/tempAttachment')
+// const { createAttachment } = require('./services/createAttachment')
 // async function bufferToFile (imageBuffer, fileType) {
 //   // Genera un nombre de archivo único (puedes ajustarlo según tus necesidades)
 //   const fileName = `imagen_${Date.now()}.${fileType}`
@@ -37,7 +38,7 @@ const flujoImagen = addKeyword(EVENTS.MEDIA).addAnswer(
   async (ctx, { flowDynamic }) => {
     console.log('sou el ctx', ctx)
     if (ctx.message.imageMessage) {
-      const buffer = await downloadMediaMessage(ctx, 'stream')
+      const buffer = await downloadMediaMessage(ctx, 'buffer')
       console.log('si hay imagen', buffer)
       const mimeType = ctx.message.imageMessage?.mimetype
 
@@ -48,8 +49,27 @@ const flujoImagen = addKeyword(EVENTS.MEDIA).addAnswer(
       // const readImage = await readFileSync(buffer)
       // console.log('soy el mimetype 123123123', readImage)
 
-      const respustaImagenJira = await uploadImageToJira(buffer, mimeType)
-      console.log('soy la respuesta')
+      const respustaImagenJira = await temporalAttachment(buffer, mimeType)
+
+      if (respustaImagenJira.temporaryAttachments) {
+        const temporaryAttachmentIds =
+          await respustaImagenJira.temporaryAttachments.map(
+            ({ temporaryAttachmentId }) => temporaryAttachmentId
+          )
+        // const bodyData = {
+        //   // additionalComment: {
+        //   //   body: 'Please find the screenshot and the log file attached.'
+        //   // },
+        //   public: true,
+        //   temporaryAttachmentIds
+        // }
+
+        // const createAttach = await createAttachment(bodyData, 'AAC-3')
+
+        // console.log(createAttach)
+        console.log('la respuesta', temporaryAttachmentIds)
+        console.log('soy la respuesta')
+      }
       console.log(respustaImagenJira)
     } else {
       console.log('No es una imagen')

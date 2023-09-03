@@ -1,7 +1,7 @@
 const url = process.env.APIURL_JIRA
 const { credentials } = require('../utils/credential')
 
-async function createReport (descripcion, titulo) {
+async function createReport (descripcion, titulo, attachmentArray) {
   const data = {
     serviceDeskId: '1',
     requestTypeId: '1',
@@ -10,6 +10,10 @@ async function createReport (descripcion, titulo) {
       description: descripcion
     },
     requestParticipants: ['62028815f5d29a0068fb1dd0']
+  }
+
+  if (attachmentArray.length > 0) {
+    data.requestFieldValues.attachment = attachmentArray
   }
 
   const resultado = await fetch(url + '/request', {
