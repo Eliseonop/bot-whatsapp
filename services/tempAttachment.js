@@ -20,7 +20,7 @@ async function uploadImageToJira (imageBuffer, type) {
     filename: nombreArchivo,
     type: `image/${extension}`
   })
-  console.log('form data 2', formData)
+  // console.log('form data 2', formData)
   try {
     const response = await fetch(
       URLAPI + '/servicedesk/1/attachTemporaryFile',
@@ -29,7 +29,6 @@ async function uploadImageToJira (imageBuffer, type) {
         headers: {
           Authorization: 'Basic ' + credentials,
           'Content-Type': 'multipart/form-data',
-          Accept: 'application/json',
           'X-Atlassian-Token': 'no-check'
         },
         body: formData
@@ -39,13 +38,13 @@ async function uploadImageToJira (imageBuffer, type) {
     console.log('soy la resonse 28', response)
     const data = await response.json()
 
-    console.log('soy la data', data)
-    const temporaryAttachmentIds = await data.temporaryAttachments.map(
-      ({ temporaryAttachmentId }) => temporaryAttachmentId
-    )
+    // console.log('soy la data', data.body)
+    // const temporaryAttachmentIds = await data.temporaryAttachments.map(
+    //   ({ temporaryAttachmentId }) => temporaryAttachmentId
+    // )
 
-    console.log('la respuesta', temporaryAttachmentIds)
-    return temporaryAttachmentIds
+    // console.log('la respuesta', temporaryAttachmentIds)
+    return data
   } catch (error) {
     console.log('⚡☢☣⚡')
     console.log(error)

@@ -37,7 +37,7 @@ const flujoImagen = addKeyword(EVENTS.MEDIA).addAnswer(
   async (ctx, { flowDynamic }) => {
     console.log('sou el ctx', ctx)
     if (ctx.message.imageMessage) {
-      const buffer = await downloadMediaMessage(ctx, 'buffer')
+      const buffer = await downloadMediaMessage(ctx, 'stream')
       console.log('si hay imagen', buffer)
       const mimeType = ctx.message.imageMessage?.mimetype
 
