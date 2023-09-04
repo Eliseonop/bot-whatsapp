@@ -15,10 +15,7 @@ const inicioFlow = addKeyword('hola', {
   sensitive: false
 })
   .addAnswer(
-    [
-      '🙌 Sistema de reportes de Errores de Tcontur 🙌',
-      '🧐 *Verificando numero...*'
-    ],
+    ['🙌 Sistema de reportes de Errores  🙌', '🧐 *Verificando numero...*'],
     {
       delay: 1000
     },

@@ -1,6 +1,7 @@
 const { addKeyword } = require('@bot-whatsapp/bot')
+const { flujoImagen } = require('./imagenFlow')
 
-const reporteFlow = addKeyword('AQUIENTRA_SI_PONE_1')
+const reporteFlow = addKeyword('#AQUIENTRA_SI_PONE_1#')
   .addAnswer(
     ['Describe tu error '],
     {
@@ -33,22 +34,22 @@ const reporteFlow = addKeyword('AQUIENTRA_SI_PONE_1')
   .addAnswer(
     ['Desea subir una imagen?', '[Si] O [No]', 'Escribe tu respuesta'],
     { capture: true },
-    async (ctx, { endFlow, flowDynamic, fallBack }) => {
+    async (ctx, { endFlow, flowDynamic, fallBack, gotoFlow }) => {
       const respuesta = ctx?.body.toLowerCase().replace(/\s+/g, '')
 
       switch (respuesta) {
         case 'si':
           await flowDynamic('Elegiste subir imagen')
+          await gotoFlow(flujoImagen)
           break
         case 'no':
-          await flowDynamic('Elegiste No subir imagen imagen')
-
-          break
+          return await flowDynamic('Elegiste No subir imagen imagen')
 
         default:
           return fallBack('No es una respuesta valida')
       }
-    }
+    },
+    [flujoImagen]
   )
 
 module.exports = {
