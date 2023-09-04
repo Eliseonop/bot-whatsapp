@@ -1,0 +1,205 @@
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: '99801A1D51053FEEBD',
+    participant: undefined
+  },
+  messageTimestamp: 1693862980,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: 'tcontur',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: 'tcontur',
+  from: '14155238886'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_d81bd738-55c1-40c0-8223-f01c5dcff604',
+  keyword: 'key_0f9c11c8-13b4-4f20-b787-d727fda48924',
+  answer: '🙌 Sistema de reportes de Errores  🙌\n🧐 *Verificando numero...*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'f0ea58be73ae11068b57a3a4341b03a6'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_fd3b84f5-0891-4738-b476-57838a4b8f9d',
+  keyword: 'ans_d81bd738-55c1-40c0-8223-f01c5dcff604',
+  answer: 'Seleccione una opcion escribiendo el numero\n' +
+    '*[1] Reportar un error*\n' +
+    '*[2] Ver estado de un reporte*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '416ede83739d78c8b1e4b0ec59a6be72'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: 'E2477FD71D74C16A28',
+    participant: undefined
+  },
+  messageTimestamp: 1693862983,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: '1',
+  from: '14155238886'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: 'ACF852BC8187795049',
+    participant: undefined
+  },
+  messageTimestamp: 1693862986,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hay un problema con alinear la luna con Titan para tener impulso',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: 'Hay un problema con alinear la luna con Titan para tener impulso',
+  from: '14155238886'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_2c94a730-fbb6-44e7-9508-3ab16cbdd745',
+  keyword: 'ans_fb55b0fd-6da3-49db-ad4e-ec6388195499',
+  answer: 'Que etiqueta o titulo le pondrias\nEjemplo: Error al obtener periodos...',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '45b33066106cee5edfe3f0fd89ce9398'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: '462877C8607E597CF8',
+    participant: undefined
+  },
+  messageTimestamp: 1693862990,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: 'Error comun',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: 'Error comun',
+  from: '14155238886'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_e3dd9fb8-f065-4b24-babe-09911601ace7',
+  keyword: 'ans_2c94a730-fbb6-44e7-9508-3ab16cbdd745',
+  answer: 'Envíame una captura, imagen o foto, por favor.\n' +
+    'Para salir del paso de subir imagen\n' +
+    'Escribe *[Fin]*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    nested: [ [Object], [Object] ],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'ad69d3621602a567da049c29251cf56c'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: '898C5D52AD154A2893',
+    participant: undefined
+  },
+  messageTimestamp: 1693862999,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    imageMessage: ImageMessage {
+      interactiveAnnotations: [],
+      scanLengths: [],
+      url: 'https://mmg.whatsapp.net/o1/v/t62.7118-24/f1/m231/up-oil-image-848affff-7510-41b5-9177-947bf7930241?ccb=9-4&oh=01_AdRmtc8l155FB_NotAfMNKJPndodcWIUiZnczsPPhoD24w&oe=651DA21F&mms3=true',
+      mimetype: 'image/jpeg',
+      fileSha256: [Uint8Array],
+      fileLength: [Long],
+      mediaKey: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      directPath: '/o1/v/t62.7118-24/f1/m231/up-oil-image-848affff-7510-41b5-9177-947bf7930241?ccb=9-4&oh=01_AdRmtc8l155FB_NotAfMNKJPndodcWIUiZnczsPPhoD24w&oe=651DA21F',
+      jpegThumbnail: [Uint8Array]
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: '_event_media__f0d0a6ba-b5f8-46cd-948b-4e8b7aa3c495',
+  from: '14155238886'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: 'F97D799520ABC2A142',
+    participant: undefined
+  },
+  messageTimestamp: 1693863010,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: 'fin',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: 'fin',
+  from: '14155238886'
+}

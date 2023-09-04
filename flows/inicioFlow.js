@@ -11,14 +11,12 @@ let intentos = 0
 //   return endFlow('Adios')
 // })
 
-const inicioFlow = addKeyword('hola', {
-  sensitive: false
+const inicioFlow = addKeyword('tcontur', {
+  sensitive: true
 })
   .addAnswer(
     ['🙌 Sistema de reportes de Errores  🙌', '🧐 *Verificando numero...*'],
-    {
-      delay: 1000
-    },
+    null,
     async (ctx, { flowDynamic, state, endFlow }) => {
       console.log(ctx)
       const usuario = verificarNumeroEnArray(+ctx.from)
@@ -42,7 +40,6 @@ const inicioFlow = addKeyword('hola', {
       '*[2] Ver estado de un reporte*'
     ],
     {
-      delay: 1000,
       capture: true
     },
     async (ctx, { flowDynamic, state, fallBack, gotoFlow, endFlow }) => {
@@ -73,3 +70,6 @@ const inicioFlow = addKeyword('hola', {
 module.exports = {
   inicioFlow
 }
+// const estado = state.getMyState()
+
+// console.log('estado:', estado)

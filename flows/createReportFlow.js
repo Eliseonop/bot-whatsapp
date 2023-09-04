@@ -5,9 +5,15 @@ const createReportFlow = addKeyword('%$#entrnado_createflow', {
 }).addAnswer(
   'Creando Reporte..',
   null,
-  async (ctx, { flowDynamic, state, fallBack, gotoFlow }) => {
+  async (ctx, { flowDynamic, state, fallBack, gotoFlow, endFlow }) => {
     const elEstado = state.getMyState()
-    console.log('soy el estado final', elEstado)
+    const titulo = `(${elEstado.usuario?.name}) ${elEstado.title}`
+
+    const idImages = elEstado.idImages ? elEstado.idImages : []
+
+    await flowDynamic([titulo, idImages.join(' '), elEstado.descripcion])
+
+    return endFlow('chao')
   }
 )
 

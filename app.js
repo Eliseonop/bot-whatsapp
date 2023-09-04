@@ -31,11 +31,19 @@ const main = async () => {
   ])
   const adapterProvider = createProvider(BaileysProvider)
 
-  createBot({
-    flow: adapterFlow,
-    provider: adapterProvider,
-    database: adapterDB
-  })
+  createBot(
+    {
+      flow: adapterFlow,
+      provider: adapterProvider,
+      database: adapterDB
+    },
+    {
+      queue: {
+        timeout: 180000,
+        concurrencyLimit: 1
+      }
+    }
+  )
 
   QRPortalWeb()
 }
