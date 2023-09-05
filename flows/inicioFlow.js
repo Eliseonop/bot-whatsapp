@@ -1,22 +1,16 @@
 const { addKeyword } = require('@bot-whatsapp/bot')
 const { verificarNumeroEnArray } = require('../utils/usuarios')
 const { reporteFlow } = require('./reporteFlow')
-const { estadoFlow } = require('./estatoFlow')
+const { estadoFlow } = require('./consultaReporte/estatoFlow')
 const { allReportesFlow } = require('./allReportesFlow')
 
 let intentos = 3
 
-// const flowFin = addKeyword(['FIN'], {
-//   sensitive: true
-// }).addAnswer(['Adios'], null, (_, { endFlow }) => {
-//   return endFlow('Adios')
-// })
-
-const inicioFlow = addKeyword('tcontur', {
+const inicioFlow = addKeyword('TCONTUR', {
   sensitive: true
 })
   .addAnswer(
-    ['🙌 Sistema de Reporte de Errores 🙌', '🧐 *Verificando numero...*'],
+    ['🙌 Sistema de Reporte de Errores', '🧐 *Verificando numero...*'],
     null,
     async (ctx, { flowDynamic, state, endFlow }) => {
       console.log(ctx)

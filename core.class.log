@@ -2,27 +2,27 @@
   key: {
     remoteJid: '14155238886@s.whatsapp.net',
     fromMe: false,
-    id: '8249D814162144A742',
+    id: '7119A71A6B6CFE6478',
     participant: undefined
   },
-  messageTimestamp: 1693882984,
+  messageTimestamp: 1693953716,
   pushName: '14155238886',
   broadcast: false,
   message: Message {
-    conversation: 'tcontur',
+    conversation: '#VER AAC-3',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
   verifiedBizName: 'Twilio',
-  body: 'tcontur',
+  body: '#VER AAC-3',
   from: '14155238886'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_622293fa-43f9-4a92-a2db-c25c6289026b',
-  keyword: 'key_bc84ef33-235a-4b3f-b705-1f7443d6a0d2',
-  answer: '🙌 Sistema de Reporte de Errores 🙌\n🧐 *Verificando numero...*',
+  ref: 'ans_e58f446c-1eca-4ce4-bdc1-2cf0c7d87063',
+  keyword: 'key_14a6e260-4c8a-4e77-97d7-bc35dea3aedf',
+  answer: '__call_action__',
   options: {
     media: null,
     buttons: [],
@@ -33,45 +33,21 @@
     keyword: {},
     callback: true
   },
-  refSerialize: 'ce185f559c90c8ee22518cc3929a70b1'
+  refSerialize: '1fdadc1e72b46d0b023591a331f75089'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_fa8148cc-291b-4e9c-8cc1-d3ca819b2dd2',
-  keyword: 'ans_622293fa-43f9-4a92-a2db-c25c6289026b',
-  answer: 'Seleccione una opcion escribiendo el numero\n' +
-    '*[1] Reportar un error* 📄\n' +
-    '*[2] Ver estado de un reporte* 🔎\n' +
-    '*[3] Ver todos los Reportes* 📚 ',
+  ref: 'ans_f2a57edf-c406-43d4-ab87-80ebe34412fb',
+  keyword: 'ans_e58f446c-1eca-4ce4-bdc1-2cf0c7d87063',
+  answer: 'Consultando *IDENTIFICADOR*',
   options: {
     media: null,
     buttons: [],
-    capture: true,
+    capture: false,
     child: null,
     delay: 0,
     nested: [],
     keyword: {},
     callback: true
   },
-  refSerialize: '88af1dc92d7474d3ed6b53111b0b57c8'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '14155238886@s.whatsapp.net',
-    fromMe: false,
-    id: '299FCA5E51D95FDEB4',
-    participant: undefined
-  },
-  messageTimestamp: 1693882988,
-  pushName: '14155238886',
-  broadcast: false,
-  message: Message {
-    conversation: '3',
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2
-    }
-  },
-  verifiedBizName: 'Twilio',
-  body: '3',
-  from: '14155238886'
+  refSerialize: 'd810e6faa145d57dc25bc8c1ac8a4cd2'
 }

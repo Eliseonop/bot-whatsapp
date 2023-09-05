@@ -12,8 +12,10 @@ const BaileysProvider = require('@bot-whatsapp/provider/baileys')
 const MockAdapter = require('@bot-whatsapp/database/mock')
 const { inicioFlow } = require('./flows/inicioFlow')
 const { reporteFlow } = require('./flows/reporteFlow')
-const { estadoFlow } = require('./flows/estatoFlow')
+const { estadoFlow } = require('./flows/consultaReporte/estatoFlow')
 const { allReportesFlow } = require('./flows/allReportesFlow')
+const { createReportFlow } = require('./flows/createReportFlow')
+const { verCodigoFlow } = require('./flows/consultaReporte/verCodigoFlow')
 // const { temporalAttachment } = require('./services/tempAttachment')
 // const { flujoImagen } = require('./flows/imagenFlow')
 
@@ -27,7 +29,8 @@ const main = async () => {
     inicioFlow,
     reporteFlow,
     estadoFlow,
-    // flujoImagen,
+    createReportFlow,
+    verCodigoFlow,
     allReportesFlow,
     flujoFin
   ])
@@ -42,7 +45,7 @@ const main = async () => {
     {
       queue: {
         timeout: 180000,
-        concurrencyLimit: 1
+        concurrencyLimit: 15
       }
     }
   )

@@ -3,35 +3,53 @@ const { createReport } = require('../services/createReport')
 
 const createReportFlow = addKeyword('%$#entrnado_createflow', {
   sensitive: true
-}).addAnswer(
-  'Creando Reporte..',
-  null,
-  async (ctx, { flowDynamic, state, fallBack, gotoFlow, endFlow }) => {
+})
+  .addAction(async (ctx, { state }) => {
     const elEstado = state.getMyState()
-    const titulo = `(${elEstado.usuario?.name}) ${elEstado.title}`
+    if (elEstado.imagenes && elEstado.imagenes.length > 0) {
+      console.log('si hay ', elEstado.imagenes)
+    }
+    console.log('Enviar un mail con el con el numero de la persona:', elEstado)
+  })
 
-    const idImages = elEstado.idImages ? elEstado.idImages : []
+  .addAnswer(
+    [
+      'Para cancelar Reporte escribe *CANCELAR*',
+      'Para crear Reporte escribe *LISTO* '
+    ],
+    {
+      capture: true
+    },
+    async (ctx, { flowDynamic, state, fallBack, gotoFlow, endFlow }) => {
+      if (ctx.body === 'CANCELAR') {
+        return endFlow('Solicitud Cancelada')
+      }
+      await flowDynamic('Creando Reporte...')
 
-    const reporteCreado = await createReport(
-      elEstado.descripcion,
-      titulo,
-      idImages
-    )
-    const partes = extractFields(reporteCreado)
+      const elEstado = state.getMyState()
 
-    console.log('soy el objeto extraido', partes)
+      const titulo = `(${elEstado.usuario?.name}) ${elEstado.title}`
 
-    console.log('respuesta del reporte creado', reporteCreado)
+      const idImages = elEstado.idImages ? elEstado.idImages : []
 
-    await flowDynamic([
-      '🎉Usted acaba de crear un nuevo reporte✨',
-      `🔎IDENTIFICADOR: *${partes.issueKey}`,
-      `📌TITULO: ${partes.summary}`
-    ])
+      const reporteCreado = await createReport(
+        elEstado.descripcion,
+        titulo,
+        idImages
+      )
+      const partes = extractFields(reporteCreado)
 
-    return endFlow('Gracias por usar nuestros servicios')
-  }
-)
+      const mensaje =
+        '🎉Usted acaba de crear un nuevo reporte✨' +
+        '\n' +
+        `🔎IDENTIFICADOR: *${partes.issueKey}` +
+        '\n' +
+        `📌ENCABEZADO: ${partes.summary}`
+      await flowDynamic(mensaje)
+
+      return endFlow('😃 Gracias por usar nuestros servicios.')
+    }
+  )
 
 function extractFields (data) {
   const { issueKey, createdDate, requestFieldValues } = data
@@ -48,6 +66,7 @@ function extractFields (data) {
     }
   }
 
+  // TODO: guardar imagens en un array y al ultimo crear el tempral
   // Crear el objeto resultante
   const result = {
     issueKey,

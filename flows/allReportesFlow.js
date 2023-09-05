@@ -15,10 +15,14 @@ const allReportesFlow = addKeyword('ALL_REPORTES').addAnswer(
 
     console.log('la lista de los mensajes =>', listaMensajes)
 
-    listaMensajes.forEach(async a => {
-      return await flowDynamic(a)
-    })
-    console.log('los reportes ', dataReportes)
+    if (listaMensajes.length > 0) {
+      listaMensajes.forEach(async a => {
+        return await flowDynamic(a)
+      })
+    } else {
+      await flowDynamic('No hay reportes disponibles')
+    }
+    return endFlow('Gracias por usar nuestros Servicios')
   }
 )
 
