@@ -13,6 +13,7 @@ const MockAdapter = require('@bot-whatsapp/database/mock')
 const { inicioFlow } = require('./flows/inicioFlow')
 const { reporteFlow } = require('./flows/reporteFlow')
 const { estadoFlow } = require('./flows/estatoFlow')
+const { allReportesFlow } = require('./flows/allReportesFlow')
 // const { temporalAttachment } = require('./services/tempAttachment')
 // const { flujoImagen } = require('./flows/imagenFlow')
 
@@ -27,6 +28,7 @@ const main = async () => {
     reporteFlow,
     estadoFlow,
     // flujoImagen,
+    allReportesFlow,
     flujoFin
   ])
   const adapterProvider = createProvider(BaileysProvider)

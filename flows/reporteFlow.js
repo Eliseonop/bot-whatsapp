@@ -4,14 +4,12 @@ const { downloadMediaMessage } = require('@whiskeysockets/baileys')
 const { temporalAttachment } = require('../services/tempAttachment')
 const { verificarNumeroEnArray } = require('../utils/usuarios')
 
-const reporteFlow = addKeyword('REPORTE', {
+const reporteFlow = addKeyword('REPORTAR', {
   sensitive: true
 })
   .addAction(async (ctx, { flowDynamic, state, endFlow }) => {
     const estado = state.getMyState()
-    console.log('estado', estado)
-    console.log('ctx', ctx)
-    console.log('vamos a ver la validacions', estado?.usuario === 'undefined')
+
     if (estado === undefined) {
       const usuario = verificarNumeroEnArray(+ctx.from)
       if (usuario !== null) {
@@ -20,7 +18,10 @@ const reporteFlow = addKeyword('REPORTE', {
           usuario
         })
 
-        return await flowDynamic(`👋Bienvenido *${usuario.name}*👋`)
+        return await flowDynamic([
+          `👋Bienvenido *${usuario.name}*👋`,
+          'Para cancelar la solicitud en cualquier momento escriba *CANCELAR*'
+        ])
       } else {
         await flowDynamic('🤨 El Usuario no tiene permisos')
         return endFlow('Adios')
@@ -29,23 +30,26 @@ const reporteFlow = addKeyword('REPORTE', {
   })
   .addAnswer(
     [
-      'Por favor, proporcióname una descripción detallada de tu error en *en una sola línea*'
+      'Por favor, Proporcióname una descripción detallada de tu error en *en una sola línea*'
     ],
     {
       capture: true
     },
     async (ctx, { flowDynamic, state, endFlow }) => {
+      if (ctx.body === 'CANCELAR') {
+        return endFlow('Solicitud Cancelada')
+      }
       state.update({
         descripcion: ctx.body
       })
     }
   )
   .addAnswer(
-    ['¿Un título breve, por favor?', 'Ejemplo: * Pantalla sin imagen *'],
+    ['¿Un título breve, por favor?', 'Ejemplo: *Pantalla sin imagen*'],
     {
       capture: true
     },
-    async (ctx, { flowDynamic, state }) => {
+    async (ctx, { flowDynamic, state, fallBack }) => {
       state.update({
         title: ctx.body
       })

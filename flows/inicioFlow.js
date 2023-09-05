@@ -2,6 +2,7 @@ const { addKeyword } = require('@bot-whatsapp/bot')
 const { verificarNumeroEnArray } = require('../utils/usuarios')
 const { reporteFlow } = require('./reporteFlow')
 const { estadoFlow } = require('./estatoFlow')
+const { allReportesFlow } = require('./allReportesFlow')
 
 let intentos = 3
 
@@ -37,7 +38,8 @@ const inicioFlow = addKeyword('tcontur', {
     [
       'Seleccione una opcion escribiendo el numero',
       '*[1] Reportar un error* 📄',
-      '*[2] Ver estado de un reporte* 🔎'
+      '*[2] Ver estado de un reporte* 🔎',
+      '*[3] Ver todos los Reportes* 📚 '
     ],
     {
       capture: true
@@ -53,6 +55,11 @@ const inicioFlow = addKeyword('tcontur', {
         case '2':
           console.log(' soy la opcion 2')
           await gotoFlow(estadoFlow)
+
+          break
+        case '3':
+          console.log(' soy la opcion 3')
+          await gotoFlow(allReportesFlow)
 
           break
         case 'FIN':

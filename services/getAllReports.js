@@ -4,11 +4,12 @@ const URLAPI = process.env.APIURL_JIRA
 
 async function getAllReports () {
   try {
-    const response = await axios.post(
+    const response = await axios.get(
       URLAPI + '/request?requestStatus=OPEN_REQUESTS',
       {
         headers: {
           Authorization: 'Basic ' + credentials,
+          Accept: 'application/json',
           'X-Atlassian-Token': 'no-check'
         }
       }
