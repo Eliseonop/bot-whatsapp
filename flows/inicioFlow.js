@@ -3,7 +3,7 @@ const { verificarNumeroEnArray } = require('../utils/usuarios')
 const { reporteFlow } = require('./reporteFlow')
 const { estadoFlow } = require('./estatoFlow')
 
-let intentos = 0
+let intentos = 3
 
 // const flowFin = addKeyword(['FIN'], {
 //   sensitive: true
@@ -15,7 +15,7 @@ const inicioFlow = addKeyword('tcontur', {
   sensitive: true
 })
   .addAnswer(
-    ['🙌 Sistema de reportes de Errores  🙌', '🧐 *Verificando numero...*'],
+    ['🙌 Sistema de Reporte de Errores 🙌', '🧐 *Verificando numero...*'],
     null,
     async (ctx, { flowDynamic, state, endFlow }) => {
       console.log(ctx)
@@ -26,9 +26,9 @@ const inicioFlow = addKeyword('tcontur', {
           usuario
         })
 
-        await flowDynamic(`Bienvenido *${usuario.name}*`)
+        await flowDynamic(`👋Bienvenido *${usuario.name}*👋`)
       } else {
-        await flowDynamic('El Usuario no tiene permisos')
+        await flowDynamic('🤨 El Usuario no tiene permisos')
         return endFlow('Adios')
       }
     }
@@ -36,8 +36,8 @@ const inicioFlow = addKeyword('tcontur', {
   .addAnswer(
     [
       'Seleccione una opcion escribiendo el numero',
-      '*[1] Reportar un error*',
-      '*[2] Ver estado de un reporte*'
+      '*[1] Reportar un error* 📄',
+      '*[2] Ver estado de un reporte* 🔎'
     ],
     {
       capture: true
@@ -58,11 +58,14 @@ const inicioFlow = addKeyword('tcontur', {
         case 'FIN':
           return endFlow('Adios')
         default:
-          intentos++
-
-          console.log(intentos)
+          intentos--
           await flowDynamic(['Opcion incorrecta , porfavor intente de nuevo'])
-          return fallBack()
+          if (intentos === 0) {
+            await flowDynamic('Intentos saturados')
+            return endFlow('Gracias por usar nuestros servicios')
+          } else {
+            return fallBack()
+          }
       }
     }
   )

@@ -2,24 +2,46 @@ const { addKeyword } = require('@bot-whatsapp/bot')
 const { createReportFlow } = require('./createReportFlow')
 const { downloadMediaMessage } = require('@whiskeysockets/baileys')
 const { temporalAttachment } = require('../services/tempAttachment')
+const { verificarNumeroEnArray } = require('../utils/usuarios')
 
-const reporteFlow = addKeyword('#CREAR')
+const reporteFlow = addKeyword('REPORTE', {
+  sensitive: true
+})
+  .addAction(async (ctx, { flowDynamic, state, endFlow }) => {
+    const estado = state.getMyState()
+    console.log('estado', estado)
+    console.log('ctx', ctx)
+    console.log('vamos a ver la validacions', estado?.usuario === 'undefined')
+    if (estado === undefined) {
+      const usuario = verificarNumeroEnArray(+ctx.from)
+      if (usuario !== null) {
+        console.log('el usuario si tiene permisos ')
+        state.update({
+          usuario
+        })
+
+        return await flowDynamic(`👋Bienvenido *${usuario.name}*👋`)
+      } else {
+        await flowDynamic('🤨 El Usuario no tiene permisos')
+        return endFlow('Adios')
+      }
+    }
+  })
   .addAnswer(
-    ['Describe tu error '],
+    [
+      'Por favor, proporcióname una descripción detallada de tu error en *en una sola línea*'
+    ],
     {
       capture: true
     },
-    async (ctx, { flowDynamic, state }) => {
+    async (ctx, { flowDynamic, state, endFlow }) => {
       state.update({
         descripcion: ctx.body
       })
     }
   )
   .addAnswer(
-    [
-      'Que etiqueta o titulo le pondrias',
-      'Ejemplo: Error al obtener periodos...'
-    ],
+    ['¿Un título breve, por favor?', 'Ejemplo: * Pantalla sin imagen *'],
     {
       capture: true
     },

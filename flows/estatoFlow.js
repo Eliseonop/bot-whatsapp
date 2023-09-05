@@ -2,22 +2,24 @@ const { addKeyword } = require('@bot-whatsapp/bot')
 const moment = require('moment-timezone')
 const { getStatus } = require('../services/getStatus')
 require('moment/locale/es')
+const { parseAndFormatJiraDate } = require('../utils/parseFecha')
 
 const expresionRegular = /^AAC-/
 let intentos = 2
 const estadoFlow = addKeyword('ENTRANDO_REPORTES').addAnswer(
-  ['Dime el *IDENTIFICADOR* del reporte'],
+  ['Por favor, proporciona el 🔎 *IDENTIFICADOR* del reporte.'],
   {
     capture: true
   },
 
   async (ctx, { endFlow, fallBack, flowDynamic }) => {
-    if (ctx.body === 'FIN') {
-      return endFlow(' *Canlelando..*Adios')
+    if (ctx.body === 'CANCELAR') {
+      await flowDynamic('*Cancelando peticion..')
+      return endFlow(' *Adios*')
     }
 
     if (expresionRegular.test(ctx.body)) {
-      await flowDynamic('Buscando ultimo comentario...')
+      await flowDynamic('🧐 Buscando ultimo comentario...')
 
       const respuesta = await getStatus(ctx.body)
 
@@ -30,7 +32,7 @@ const estadoFlow = addKeyword('ENTRANDO_REPORTES').addAnswer(
           `comentario: *${cmt.comment}* `
         ])
       } else {
-        await flowDynamic('No hay comentarios disponibles')
+        await flowDynamic('🤷‍♂️ No hay comentarios disponibles')
       }
 
       console.log(respuesta)
@@ -57,9 +59,7 @@ function obtenerUltimoComentario (data) {
       'YYYY-MM-DDTHH:mm:ss.SSSZ'
     )
     fechaParseada.locale('es')
-    const formatoDeseado = fechaParseada.format(
-      ' DD [de] MMMM [de] YYYY, HH:mm:ss'
-    )
+    const formatoDeseado = parseAndFormatJiraDate(ultimoComentario.created.jira)
     return {
       fecha: formatoDeseado,
       comment: ultimoComentario.body,
