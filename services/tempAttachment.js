@@ -4,15 +4,19 @@ const axios = require('axios')
 const FormData = require('form-data')
 const URLAPI = process.env.APIURL_JIRA
 
-async function temporalAttachment (imageBuffer, type) {
+async function temporalAttachment (array) {
+  // const array = []
   const formData = new FormData()
-  const parts = type.split('/')
 
-  const extension = parts[1]
+  array.forEach(async element => {
+    const parts = element.mimeType.split('/')
 
-  const nombreArchivo = `file${Date.now().toString()}.${extension}`
+    const extension = parts[1]
+    const randomName = Math.random().toString(36).substring(2, 12)
+    const nombreArchivo = `file${randomName}.${extension}`
 
-  formData.append('file', imageBuffer, nombreArchivo)
+    formData.append('file', element.buffer, nombreArchivo)
+  })
 
   const headers = formData.getHeaders()
 

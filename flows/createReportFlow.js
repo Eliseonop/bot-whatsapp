@@ -1,5 +1,6 @@
 const { addKeyword } = require('@bot-whatsapp/bot')
 const { createReport } = require('../services/createReport')
+const { temporalAttachment } = require('../services/tempAttachment')
 
 const createReportFlow = addKeyword('%$#entrnado_createflow', {
   sensitive: true
@@ -8,7 +9,21 @@ const createReportFlow = addKeyword('%$#entrnado_createflow', {
     const elEstado = state.getMyState()
     if (elEstado.imagenes && elEstado.imagenes.length > 0) {
       console.log('si hay ', elEstado.imagenes)
+      const respustaImagenJira = await temporalAttachment(elEstado.imagenes)
+      if (respustaImagenJira.temporaryAttachments) {
+        const temporaryAttachmentIds =
+          await respustaImagenJira.temporaryAttachments.map(
+            ({ temporaryAttachmentId }) => temporaryAttachmentId
+          )
+
+        state.update({
+          idImages: temporaryAttachmentIds
+        })
+      }
+      console.log(respustaImagenJira)
     }
+    console.log(state.getMyState())
+
     console.log('Enviar un mail con el con el numero de la persona:', elEstado)
   })
 
@@ -23,31 +38,34 @@ const createReportFlow = addKeyword('%$#entrnado_createflow', {
     async (ctx, { flowDynamic, state, fallBack, gotoFlow, endFlow }) => {
       if (ctx.body === 'CANCELAR') {
         return endFlow('Solicitud Cancelada')
+      } else if (ctx.body === 'LISTO') {
+        await flowDynamic('Creando Reporte...')
+
+        const elEstado = state.getMyState()
+
+        const titulo = `(${elEstado.usuario?.name}) ${elEstado.title}`
+
+        const idImages = elEstado.idImages ? elEstado.idImages : []
+
+        const reporteCreado = await createReport(
+          elEstado.descripcion,
+          titulo,
+          idImages
+        )
+        const partes = extractFields(reporteCreado)
+
+        const mensaje =
+          '🎉Usted acaba de crear un nuevo reporte✨' +
+          '\n' +
+          `🔎IDENTIFICADOR: *${partes.issueKey}*` +
+          '\n' +
+          `📌ENCABEZADO: *${partes.summary}*`
+        await flowDynamic(mensaje)
+
+        return endFlow('😃 Gracias por usar nuestros servicios.')
+      } else {
+        return fallBack('Necesito una respuesta Valida')
       }
-      await flowDynamic('Creando Reporte...')
-
-      const elEstado = state.getMyState()
-
-      const titulo = `(${elEstado.usuario?.name}) ${elEstado.title}`
-
-      const idImages = elEstado.idImages ? elEstado.idImages : []
-
-      const reporteCreado = await createReport(
-        elEstado.descripcion,
-        titulo,
-        idImages
-      )
-      const partes = extractFields(reporteCreado)
-
-      const mensaje =
-        '🎉Usted acaba de crear un nuevo reporte✨' +
-        '\n' +
-        `🔎IDENTIFICADOR: *${partes.issueKey}` +
-        '\n' +
-        `📌ENCABEZADO: ${partes.summary}`
-      await flowDynamic(mensaje)
-
-      return endFlow('😃 Gracias por usar nuestros servicios.')
     }
   )
 
