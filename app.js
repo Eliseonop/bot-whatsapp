@@ -16,6 +16,7 @@ const { estadoFlow } = require('./flows/consultaReporte/estatoFlow')
 const { allReportesFlow } = require('./flows/allReportesFlow')
 const { createReportFlow } = require('./flows/createReportFlow')
 const { verCodigoFlow } = require('./flows/consultaReporte/verCodigoFlow')
+const { ayudaFlujo } = require('./flows/ayudaFlow')
 // const { temporalAttachment } = require('./services/tempAttachment')
 // const { flujoImagen } = require('./flows/imagenFlow')
 
@@ -32,7 +33,8 @@ const main = async () => {
     createReportFlow,
     verCodigoFlow,
     allReportesFlow,
-    flujoFin
+    flujoFin,
+    ayudaFlujo
   ])
   const adapterProvider = createProvider(BaileysProvider)
 

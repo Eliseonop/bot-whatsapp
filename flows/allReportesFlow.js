@@ -2,7 +2,11 @@ const { addKeyword } = require('@bot-whatsapp/bot')
 require('moment/locale/es')
 const { getAllReports } = require('../services/getAllReports')
 
-const allReportesFlow = addKeyword('ALL_REPORTES').addAnswer(
+const regreportes = /^#REPORTES$/
+
+const allReportesFlow = addKeyword(`${regreportes}`, {
+  regex: true
+}).addAnswer(
   ['Solicitando Reportes'],
   null,
   async (ctx, { endFlow, fallBack, flowDynamic }) => {

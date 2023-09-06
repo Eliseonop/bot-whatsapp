@@ -13,7 +13,6 @@ const inicioFlow = addKeyword('TCONTUR', {
     ['🙌 Sistema de Reporte de Errores', '🧐 *Verificando numero...*'],
     null,
     async (ctx, { flowDynamic, state, endFlow }) => {
-      console.log(ctx)
       const usuario = verificarNumeroEnArray(+ctx.from)
       if (usuario !== null) {
         console.log('el usuario si tiene permisos ')
@@ -33,12 +32,17 @@ const inicioFlow = addKeyword('TCONTUR', {
       'Seleccione una opcion escribiendo el numero',
       '*[1] Reportar un error* 📄',
       '*[2] Ver estado de un reporte* 🔎',
-      '*[3] Ver todos los Reportes* 📚 '
+      '*[3] Ver todos los Reportes* 📚 ',
+      '*[CANCELAR]* para salir'
     ],
     {
       capture: true
     },
     async (ctx, { flowDynamic, state, fallBack, gotoFlow, endFlow }) => {
+      console.log(ctx)
+      if (ctx.body === 'CANCELAR') {
+        return endFlow('Te espero pronto')
+      }
       switch (ctx.body) {
         case '1':
           console.log('soy la opcion 1')

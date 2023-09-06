@@ -1,11 +1,15 @@
 const { addKeyword } = require('@bot-whatsapp/bot')
 const { getStatus } = require('../../services/getStatus')
 const { obtenerUltimoComentario } = require('./utils/ultimoComentario')
+const { extraerComentarioConImagen } = require('./utils/comentarioImagen')
 require('moment/locale/es')
 
 const expresionRegular = /^AAC-/
+const regVer = /^#VER$/
 let intentos = 2
-const estadoFlow = addKeyword('ENTRANDO_REPORTES').addAnswer(
+const estadoFlow = addKeyword(`${regVer}`, {
+  regex: true
+}).addAnswer(
   ['Por favor, proporciona el 🔎 *IDENTIFICADOR* del reporte.'],
   {
     capture: true
@@ -22,13 +26,16 @@ const estadoFlow = addKeyword('ENTRANDO_REPORTES').addAnswer(
 
       const respuesta = await getStatus(ctx.body)
 
-      const cmt = obtenerUltimoComentario(respuesta)
+      const cmt = await obtenerUltimoComentario(respuesta)
 
+      const comentarioExtraido = extraerComentarioConImagen(cmt.comment)
+
+      console.log('comentario extraido', comentarioExtraido)
       if (cmt) {
         console.log(cmt)
         await flowDynamic([
           `*${cmt.user} ${cmt.fecha}*`,
-          `comentario: *${cmt.comment}* `
+          `comentario: *${comentarioExtraido}* `
         ])
       } else {
         await flowDynamic('🤷‍♂️ No hay comentarios disponibles')

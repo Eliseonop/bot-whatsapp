@@ -2,27 +2,27 @@
   key: {
     remoteJid: '14155238886@s.whatsapp.net',
     fromMe: false,
-    id: '7119A71A6B6CFE6478',
+    id: '7278BACE0FA734550E',
     participant: undefined
   },
-  messageTimestamp: 1693953716,
+  messageTimestamp: 1693973226,
   pushName: '14155238886',
   broadcast: false,
   message: Message {
-    conversation: '#VER AAC-3',
+    conversation: 'TCONTUR',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
   verifiedBizName: 'Twilio',
-  body: '#VER AAC-3',
+  body: 'TCONTUR',
   from: '14155238886'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_e58f446c-1eca-4ce4-bdc1-2cf0c7d87063',
-  keyword: 'key_14a6e260-4c8a-4e77-97d7-bc35dea3aedf',
-  answer: '__call_action__',
+  ref: 'ans_78de52d8-5d03-491a-a6b7-963d6bf1d3e2',
+  keyword: 'key_b4973fbf-9ce9-45bc-b156-418787969e4e',
+  answer: '🙌 Sistema de Reporte de Errores\n🧐 *Verificando numero...*',
   options: {
     media: null,
     buttons: [],
@@ -33,21 +33,46 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '1fdadc1e72b46d0b023591a331f75089'
+  refSerialize: '933a4bb26294778b079748435e395bf1'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_f2a57edf-c406-43d4-ab87-80ebe34412fb',
-  keyword: 'ans_e58f446c-1eca-4ce4-bdc1-2cf0c7d87063',
-  answer: 'Consultando *IDENTIFICADOR*',
+  ref: 'ans_27649e42-b813-4308-a0a2-d3ee4946bea7',
+  keyword: 'ans_78de52d8-5d03-491a-a6b7-963d6bf1d3e2',
+  answer: 'Seleccione una opcion escribiendo el numero\n' +
+    '*[1] Reportar un error* 📄\n' +
+    '*[2] Ver estado de un reporte* 🔎\n' +
+    '*[3] Ver todos los Reportes* 📚 \n' +
+    '*[CANCELAR]* para salir',
   options: {
     media: null,
     buttons: [],
-    capture: false,
+    capture: true,
     child: null,
     delay: 0,
     nested: [],
     keyword: {},
     callback: true
   },
-  refSerialize: 'd810e6faa145d57dc25bc8c1ac8a4cd2'
+  refSerialize: '67cbaff2586d8c0c4bd11a767046c6c0'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: '22FD84D7AF61723FBA',
+    participant: undefined
+  },
+  messageTimestamp: 1693973230,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: 'CANCELAR',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: 'CANCELAR',
+  from: '14155238886'
 }

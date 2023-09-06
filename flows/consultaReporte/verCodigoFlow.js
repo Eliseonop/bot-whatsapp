@@ -2,6 +2,7 @@ const { addKeyword } = require('@bot-whatsapp/bot')
 const { verificarNumeroEnArray } = require('../../utils/usuarios')
 const { getStatus } = require('../../services/getStatus')
 const { obtenerUltimoComentario } = require('./utils/ultimoComentario')
+const { extraerComentarioConImagen } = require('./utils/comentarioImagen')
 
 const patron = /^#VER AAC-(\d+)/
 const verCodigoFlow = addKeyword(`${patron}`, {
@@ -28,11 +29,12 @@ const verCodigoFlow = addKeyword(`${patron}`, {
     }
   })
   .addAnswer(
-    'Consultando *IDENTIFICADOR*',
+    '🧐 Buscando ultimo comentario...',
     null,
     async (ctx, { state, flowDynamic, endFlow }) => {
+      console.log('donde vamos a ir', ctx)
       const elEstado = state.getMyState()
-      console.log('el estado', elEstado)
+      // console.log('el estado', elEstado)
       if (elEstado.codigo) {
         const respuesta = await getStatus(elEstado.codigo)
 
@@ -41,14 +43,24 @@ const verCodigoFlow = addKeyword(`${patron}`, {
         }
 
         console.log(respuesta)
-        const cmt = obtenerUltimoComentario(respuesta)
+        const cmt = await obtenerUltimoComentario(respuesta)
+
+        const comentarioExtraido = extraerComentarioConImagen(cmt.comment)
+
+        console.log('comentario extraido', comentarioExtraido)
+
         console.log(cmt)
         if (cmt) {
-          console.log(cmt)
+          // console.log(cmt)
           await flowDynamic([
             `*${cmt.user} ${cmt.fecha}*`,
-            `comentario: *${cmt.comment}* `
+            `comentario: *${comentarioExtraido}* `
           ])
+          // if (cmt.imagen) {
+          //   await flowDynamic({
+          //     media: `${cmt.imagen}`
+          //   })
+          // }
         } else {
           await flowDynamic('🤷‍♂️ No hay comentarios disponibles')
         }
