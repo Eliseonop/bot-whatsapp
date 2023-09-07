@@ -5,9 +5,9 @@ const { estadoFlow } = require('./consultaReporte/estatoFlow')
 const { allReportesFlow } = require('./allReportes/allReportesFlow')
 
 let intentos = 3
-
-const inicioFlow = addKeyword('TCONTUR', {
-  sensitive: true
+const regTcontur = /^[Mm][Ee][nN][Uu]$/
+const inicioFlow = addKeyword(`${regTcontur}`, {
+  regex: true
 })
   .addAnswer(
     ['🙌 Sistema de Reporte de Errores', '🧐 *Verificando numero...*'],

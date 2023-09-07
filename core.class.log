@@ -1,27 +1,30 @@
 [handleMsg]:  {
   key: {
-    remoteJid: '14155238886@s.whatsapp.net',
+    remoteJid: '51969334754@s.whatsapp.net',
     fromMe: false,
-    id: '0F8F7969ADAA7944C7',
+    id: '3EB01D560C8F89469922ED',
     participant: undefined
   },
-  messageTimestamp: 1694095313,
-  pushName: '14155238886',
+  messageTimestamp: 1694098019,
+  pushName: 'Daniel Robles',
   broadcast: false,
   message: Message {
-    conversation: '#VER',
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'reportar',
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
-  verifiedBizName: 'Twilio',
-  body: '#VER',
-  from: '14155238886'
+  body: 'reportar',
+  from: '51969334754'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_ebd845a9-f18f-4487-b339-240edab4f465',
-  keyword: 'key_83c360d7-951c-4c47-9ffe-8a6409ca042b',
+  ref: 'ans_1ed15b54-d058-4d6b-bfe2-0545cf8a120a',
+  keyword: 'key_4d9142d0-deae-4199-8769-236f844bda49',
   answer: '__call_action__',
   options: {
     media: null,
@@ -33,5 +36,45 @@
     keyword: {},
     callback: true
   },
-  refSerialize: 'f8bba836b5e80d66122a564a43288905'
+  refSerialize: '13f6cb16fe7ad02973fa1e5e4cccd886'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_33ae94ee-5697-44dc-b95c-0892eadd3630',
+  keyword: 'ans_1ed15b54-d058-4d6b-bfe2-0545cf8a120a',
+  answer: '¿Proporcióname un título breve, por favor?\nEjemplo: *Pantalla sin imagen*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '68cecbcd8e53504749cb4114b88d82fd'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51969334754@s.whatsapp.net',
+    fromMe: false,
+    id: '3EB018C448AFE33F981C5E',
+    participant: undefined
+  },
+  messageTimestamp: 1694098022,
+  pushName: 'Daniel Robles',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'cancelar',
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'cancelar',
+  from: '51969334754'
 }

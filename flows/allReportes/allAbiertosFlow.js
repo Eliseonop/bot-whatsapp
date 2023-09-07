@@ -3,7 +3,7 @@ require('moment/locale/es')
 const { getAllReports } = require('../../services/getAllReports')
 const { verificarNumeroEnArray } = require('../../utils/usuarios')
 
-const regAbiertos = /^#ABIERTOS$/
+const regAbiertos = /^[Aa][Bb][Ii][Ee][Rr][Tt][Oo][Ss]$/
 
 const allAbiertosFlow = addKeyword(`${regAbiertos}`, {
   regex: true

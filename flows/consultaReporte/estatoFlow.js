@@ -64,7 +64,7 @@ async function handleResponse (ctx, flowDynamic, endFlow, fallBack, intentos) {
 }
 
 const expresionRegular = /^(\d+)/
-const regVer = /^#VER$/
+const regVer = /^VER$/
 const intentos = 2
 
 const estadoFlow = addKeyword(`${regVer}`, {

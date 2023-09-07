@@ -2,33 +2,45 @@ const { addKeyword } = require('@bot-whatsapp/bot')
 require('moment/locale/es')
 const { getAllReports } = require('../../services/getAllReports')
 const { traducirEstado } = require('../consultaReporte/utils/traducirEstado')
-const regreportes = /^#REPORTES$/
+const { verificarNumeroEnArray } = require('../../utils/usuarios')
+const regreportes = /^[Rr][Ee][Pp][Oo][Rr][Tt][Ee][Ss]$/
 
 const allReportesFlow = addKeyword(`${regreportes}`, {
   regex: true
-}).addAnswer(
-  ['Solicitando Reportes'],
-  null,
-  async (ctx, { endFlow, fallBack, flowDynamic }) => {
-    const data = await getAllReports('ALL_REQUESTS')
-
-    console.log('soy la data', data)
-    const dataReportes = await transformDataToReportsArray(data)
-
-    const listaMensajes = listarMensajes(dataReportes)
-
-    console.log('la lista de los mensajes =>', listaMensajes)
-
-    if (listaMensajes.length > 0) {
-      listaMensajes.forEach(async a => {
-        return await flowDynamic(a)
-      })
+})
+  .addAction(async (ctx, { flowDynamic, state, endFlow }) => {
+    const usuario = verificarNumeroEnArray(+ctx.from)
+    if (usuario !== null) {
+      console.log('el usuario si tiene permisos ')
+      await flowDynamic([`👋Bienvenido *${usuario.name}*👋`])
     } else {
-      await flowDynamic('No hay reportes disponibles')
+      await flowDynamic('🤨 El Usuario no tiene permisos')
+      return endFlow('Adios')
     }
-    return endFlow('Gracias por usar nuestros Servicios')
-  }
-)
+  })
+  .addAnswer(
+    ['Solicitando Reportes'],
+    null,
+    async (ctx, { endFlow, fallBack, flowDynamic }) => {
+      const data = await getAllReports('ALL_REQUESTS')
+
+      console.log('soy la data', data)
+      const dataReportes = await transformDataToReportsArray(data)
+
+      const listaMensajes = listarMensajes(dataReportes)
+
+      console.log('la lista de los mensajes =>', listaMensajes)
+
+      if (listaMensajes.length > 0) {
+        listaMensajes.forEach(async a => {
+          return await flowDynamic(a)
+        })
+      } else {
+        await flowDynamic('No hay reportes disponibles')
+      }
+      return endFlow('Gracias por usar nuestros Servicios')
+    }
+  )
 
 function listarMensajes (datos) {
   const lista = []

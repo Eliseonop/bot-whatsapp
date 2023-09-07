@@ -8,7 +8,7 @@ const adwImagen1 =
   'Envíame imagenes *una por una*, por favor.' +
   '\n' +
   'Escriba *FIN* si desea concluir el proceso de carga de una imagen y proceder a la creación del Reporte.'
-const regReportar = /^#REPORTAR$/
+const regReportar = /^[Rr][Ee][Pp][Oo][Rr][Tt][Aa][rR]$/
 
 const reporteFlow = addKeyword(`${regReportar}`, {
   regex: true
@@ -44,7 +44,7 @@ const reporteFlow = addKeyword(`${regReportar}`, {
       capture: true
     },
     async (ctx, { flowDynamic, state, endFlow }) => {
-      if (ctx.body === 'CANCELAR') {
+      if (ctx.body.toUpperCase().trim() === 'CANCELAR') {
         return endFlow('Solicitud Cancelada')
       }
       state.update({
@@ -58,7 +58,7 @@ const reporteFlow = addKeyword(`${regReportar}`, {
       capture: true
     },
     async (ctx, { flowDynamic, state, fallBack, endFlow }) => {
-      if (ctx.body === 'CANCELAR') {
+      if (ctx.body.toUpperCase().trim() === 'CANCELAR') {
         return endFlow('Solicitud Cancelada')
       }
 
@@ -74,10 +74,10 @@ const reporteFlow = addKeyword(`${regReportar}`, {
     },
     async (ctx, { flowDynamic, state, fallBack, gotoFlow, endFlow }) => {
       console.log('Soy el ctx', ctx)
-      if (ctx.body === 'CANCELAR') {
+      if (ctx.body.toUpperCase().trim() === 'CANCELAR') {
         return endFlow('Solicitud Cancelada')
       }
-      const respuesta = ctx?.body.toLowerCase().replace(/\s+/g, '')
+      const respuesta = ctx?.body.toUpperCase().trim()
       if (ctx.message.imageMessage) {
         const buffer = await downloadMediaMessage(ctx, 'buffer')
         // console.log('si hay imagen', buffer)

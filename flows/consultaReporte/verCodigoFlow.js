@@ -48,7 +48,7 @@ async function handleResponse (ctx, flowDynamic, endFlow, state) {
   }
 }
 
-const patron = /^#VER (\d+)/
+const patron = /^VER (\d+)/
 const verCodigoFlow = addKeyword(`${patron}`, {
   regex: true
 })

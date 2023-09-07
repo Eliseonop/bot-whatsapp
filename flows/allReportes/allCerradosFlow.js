@@ -3,7 +3,7 @@ require('moment/locale/es')
 const { getAllReports } = require('../../services/getAllReports')
 const { verificarNumeroEnArray } = require('../../utils/usuarios')
 
-const regCerrados = /^#CERRADOS$/
+const regCerrados = /^[Cc][Ee][Rr][Rr][Aa][Dd][Oo][Ss]$/
 
 const allCerradosFlow = addKeyword(`${regCerrados}`, {
   regex: true
