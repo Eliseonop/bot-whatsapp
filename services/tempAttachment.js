@@ -42,7 +42,7 @@ async function temporalAttachment (array) {
   } catch (error) {
     console.log('⚡☢☣⚡')
     console.log(error)
-    return error
+    return error.response.data
   }
 }
 

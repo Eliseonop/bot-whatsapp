@@ -29,7 +29,7 @@ async function createReport (descripcion, titulo, attachmentArray) {
     return response.data
   } catch (error) {
     console.error('Error en la solicitud:', error)
-    throw error
+    throw error.response.data
   }
 }
 

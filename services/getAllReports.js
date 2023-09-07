@@ -2,7 +2,7 @@ const { credentials } = require('../utils/credential')
 const axios = require('axios')
 const URLAPI = process.env.APIURL_JIRA
 
-async function getAllReports (status = 'ALL_REQUESTS', limit = 10) {
+async function getAllReports (status = 'ALL_REQUESTS', limit = 5) {
   const newUrl =
     URLAPI +
     `/request?requestStatus=${status}` +
@@ -23,7 +23,7 @@ async function getAllReports (status = 'ALL_REQUESTS', limit = 10) {
   } catch (error) {
     console.log('⚡☢☣⚡')
     console.log(error)
-    return error
+    return error.response.data
   }
 }
 
