@@ -23,9 +23,9 @@ async function handleResponse (ctx, flowDynamic, endFlow, fallBack, intentos) {
     // const cmt = await obtenerUltimoComentario(respuesta)
     const mensaje = dataProcesada.comentarios
       .map((element, i) => {
-        return `${i + 1}. Autor: *${element.autor}*\nComentario: *${
-          element.comentario
-        }*`
+        return `${i + 1}. *${element.create}* de *${
+          element.autor
+        }*\nComentario: *${element.comentario}*`
       })
       .join('\n\n')
     console.log('mensaje ', mensaje)
