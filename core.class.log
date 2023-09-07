@@ -2,26 +2,26 @@
   key: {
     remoteJid: '14155238886@s.whatsapp.net',
     fromMe: false,
-    id: '99E69C0EB52BDC238F',
+    id: '708782FB06A1C54214',
     participant: undefined
   },
-  messageTimestamp: 1694057290,
+  messageTimestamp: 1694064907,
   pushName: '14155238886',
   broadcast: false,
   message: Message {
-    conversation: '#VER AAC-10',
+    conversation: '#VER 10',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
   verifiedBizName: 'Twilio',
-  body: '#VER AAC-10',
+  body: '#VER 10',
   from: '14155238886'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_580c3b6b-03ff-4cef-9a07-fe677aaa77b2',
-  keyword: 'key_ced96c87-6f2e-4c71-b536-c53df2047aa7',
+  ref: 'ans_0da67adb-4e77-4c24-8cdc-96943cac8f47',
+  keyword: 'key_384d1d21-f1bd-4e31-959f-9207af47ee12',
   answer: '__call_action__',
   options: {
     media: null,
@@ -33,11 +33,11 @@
     keyword: {},
     callback: true
   },
-  refSerialize: 'a1f5f9e373a4e7db3cadec7330b05840'
+  refSerialize: '8e1578adf701b59bb591825ca60a167d'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_7b9e7502-f5b6-4719-8220-d071c2e0a7db',
-  keyword: 'ans_580c3b6b-03ff-4cef-9a07-fe677aaa77b2',
+  ref: 'ans_5137500e-4657-48d4-bac5-c12e110435d3',
+  keyword: 'ans_0da67adb-4e77-4c24-8cdc-96943cac8f47',
   answer: '🔎 Buscando reporte...',
   options: {
     media: null,
@@ -49,5 +49,270 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '08244089307be99427d2e2fcf3c3d6dd'
+  refSerialize: '56bacaf1f32233119df55838c87007dc'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: '61DB8E499C333D934E',
+    participant: undefined
+  },
+  messageTimestamp: 1694064916,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: '#VER 4',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: '#VER 4',
+  from: '14155238886'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_0da67adb-4e77-4c24-8cdc-96943cac8f47',
+  keyword: 'key_384d1d21-f1bd-4e31-959f-9207af47ee12',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '8e1578adf701b59bb591825ca60a167d'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_5137500e-4657-48d4-bac5-c12e110435d3',
+  keyword: 'ans_0da67adb-4e77-4c24-8cdc-96943cac8f47',
+  answer: '🔎 Buscando reporte...',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '56bacaf1f32233119df55838c87007dc'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: '5EDABA1B9FFAEFE3B7',
+    participant: undefined
+  },
+  messageTimestamp: 1694064925,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: '#VER 1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: '#VER 1',
+  from: '14155238886'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_0da67adb-4e77-4c24-8cdc-96943cac8f47',
+  keyword: 'key_384d1d21-f1bd-4e31-959f-9207af47ee12',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '8e1578adf701b59bb591825ca60a167d'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_5137500e-4657-48d4-bac5-c12e110435d3',
+  keyword: 'ans_0da67adb-4e77-4c24-8cdc-96943cac8f47',
+  answer: '🔎 Buscando reporte...',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '56bacaf1f32233119df55838c87007dc'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: '5A55DB53A0D270BDB8',
+    participant: undefined
+  },
+  messageTimestamp: 1694064932,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: '#VER 2',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: '#VER 2',
+  from: '14155238886'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_0da67adb-4e77-4c24-8cdc-96943cac8f47',
+  keyword: 'key_384d1d21-f1bd-4e31-959f-9207af47ee12',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '8e1578adf701b59bb591825ca60a167d'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_5137500e-4657-48d4-bac5-c12e110435d3',
+  keyword: 'ans_0da67adb-4e77-4c24-8cdc-96943cac8f47',
+  answer: '🔎 Buscando reporte...',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '56bacaf1f32233119df55838c87007dc'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: '96DEBDA91893BC82F5',
+    participant: undefined
+  },
+  messageTimestamp: 1694064942,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: '#VER 5',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: '#VER 5',
+  from: '14155238886'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_0da67adb-4e77-4c24-8cdc-96943cac8f47',
+  keyword: 'key_384d1d21-f1bd-4e31-959f-9207af47ee12',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '8e1578adf701b59bb591825ca60a167d'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_5137500e-4657-48d4-bac5-c12e110435d3',
+  keyword: 'ans_0da67adb-4e77-4c24-8cdc-96943cac8f47',
+  answer: '🔎 Buscando reporte...',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '56bacaf1f32233119df55838c87007dc'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: '7D6125829D37D4F9C9',
+    participant: undefined
+  },
+  messageTimestamp: 1694064949,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: '#VER 8',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: '#VER 8',
+  from: '14155238886'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_0da67adb-4e77-4c24-8cdc-96943cac8f47',
+  keyword: 'key_384d1d21-f1bd-4e31-959f-9207af47ee12',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '8e1578adf701b59bb591825ca60a167d'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_5137500e-4657-48d4-bac5-c12e110435d3',
+  keyword: 'ans_0da67adb-4e77-4c24-8cdc-96943cac8f47',
+  answer: '🔎 Buscando reporte...',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '56bacaf1f32233119df55838c87007dc'
 }

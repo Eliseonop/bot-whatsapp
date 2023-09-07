@@ -65,10 +65,6 @@ const reporteFlow = addKeyword(`${regReportar}`, {
       state.update({
         descripcion: ctx.body
       })
-
-      const myState = state.getMyState()
-
-      console.log(myState)
     }
   )
   .addAnswer(

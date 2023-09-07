@@ -1,8 +1,7 @@
 const { addKeyword } = require('@bot-whatsapp/bot')
 const { getReporteByCode } = require('../../services/getReporteByCode')
-const { obtenerUltimoComentario } = require('./utils/ultimoComentario')
-const { extraerComentarioConImagen } = require('./utils/comentarioImagen')
 const { verificarNumeroEnArray } = require('../../utils/usuarios')
+const { procesarConComentario } = require('./utils/procesarConComentario')
 require('moment/locale/es')
 
 // Función común para manejar la respuesta
@@ -17,22 +16,35 @@ async function handleResponse (ctx, flowDynamic, endFlow, fallBack, intentos) {
     if (respuesta?.errorMessage) {
       return endFlow('🙄 El Reporte no ha sido encontrado.')
     }
+    const dataProcesada = procesarConComentario(respuesta)
+
     await flowDynamic('🧐 Buscando ultimo comentario...')
 
-    const cmt = await obtenerUltimoComentario(respuesta)
-
-    const comentarioExtraido = extraerComentarioConImagen(cmt.comment)
-
-    console.log('comentario extraido', comentarioExtraido)
-    if (cmt) {
-      const regex = /^![^\n]*\|width=\d+,height=\d+!$/
-
-      if (regex.test(comentarioExtraido)) {
-        return await flowDynamic('🤷‍♂️ No hay comentarios disponibles')
-      }
+    // const cmt = await obtenerUltimoComentario(respuesta)
+    const mensaje = dataProcesada.comentarios
+      .map((element, i) => {
+        return `${i + 1}. Autor: *${element.autor}*\nComentario: *${
+          element.comentario
+        }*`
+      })
+      .join('\n\n')
+    console.log('mensaje ', mensaje)
+    if (dataProcesada) {
       await flowDynamic(
-        `*${cmt.user}* ${cmt.fecha} \n` + `comentario: *${comentarioExtraido}* `
+        `*${dataProcesada.crate}*` +
+          '\n' +
+          `${dataProcesada.title}` +
+          '\n' +
+          `estado: *${dataProcesada.estado}* ` +
+          '\n\n' +
+          `${
+            dataProcesada.comentarios.length > 0
+              ? `*Ultimos Comentarios:* \n${mensaje}`
+              : 'No hay mensajes'
+          }`
       )
+
+      return endFlow('Gracias por usar nuestros servicios')
     } else {
       await flowDynamic('🤷‍♂️ No hay comentarios disponibles')
     }
@@ -51,7 +63,7 @@ async function handleResponse (ctx, flowDynamic, endFlow, fallBack, intentos) {
   }
 }
 
-const expresionRegular = /^AAC-/
+const expresionRegular = /^(\d+)/
 const regVer = /^#VER$/
 const intentos = 2
 

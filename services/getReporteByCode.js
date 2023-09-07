@@ -5,7 +5,7 @@ const { credentials } = require('../utils/credential')
 async function getReporteByCode (etiqueta) {
   try {
     const response = await axios.get(
-      `${url}/request/${etiqueta}?expand=comment`,
+      `${url}/request/AAC-${etiqueta}?expand=comment`,
       {
         headers: {
           Authorization: 'Basic ' + credentials,

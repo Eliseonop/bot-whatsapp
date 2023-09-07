@@ -1,26 +1,16 @@
 function extraerComentario (data) {
+  const patronImagen = /!.*?\.(jpg|jpeg|png|gif)\|[^!]*!/g
   const comentarios = data.comments.values.map(comment => {
-    // const comentarioLimpio = extraerComentarioConImagen(comment.body)
-    const regexUno = /([^]*?)\s*\n\n![^\n]*!\s*$/
-    const regexDos = /^!([\w.-]+)\|width=(\d+),height=(\d+)!$/
-    const match = comment.body.match(regexUno)
     const autor = comment.author.displayName
-    if (comment.body.match(regexUno)) {
-      const comentario = match[1].trim()
-      return {
-        comentario,
-        autor
-      }
-    } else if (comment.body.match(regexDos)) {
-      return {
-        autor,
-        comentario: null
-      }
-    } else {
-      return { comentario: comment.body, autor }
-    }
+    const create = comment.created.friendly
+    const comentario = comment.body
+      .replace(patronImagen, '')
+      .split('\n\n')[0]
+      .trim()
+
+    return { comentario, autor, create }
   })
-  return comentarios.filter(a => a.comentario !== null)
+  return comentarios.filter(a => a.comentario !== '')
 }
 
 module.exports = {

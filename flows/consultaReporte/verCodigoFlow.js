@@ -1,58 +1,28 @@
 const { addKeyword } = require('@bot-whatsapp/bot')
 const { verificarNumeroEnArray } = require('../../utils/usuarios')
 const { getReporteByCode } = require('../../services/getReporteByCode')
-// const { obtenerUltimoComentario } = require('./utils/ultimoComentario')
-const { extraerComentario } = require('./utils/comentarioImagen')
-const { traducirEstado } = require('./utils/traducirEstado')
-
-// Función común para manejar la respuesta
-function procesarData (data) {
-  // Obtenemos la información relevante de la respuesta
-  const fechaCreacion = data.createdDate.friendly
-  const titulo = data.requestFieldValues.find(
-    field => field.fieldId === 'summary'
-  ).value
-  const descripcion = data.requestFieldValues.find(
-    field => field.fieldId === 'description'
-  ).value
-  const estado = traducirEstado(data.currentStatus.status)
-
-  // Filtramos los comentarios y procesamos el texto
-  const comentarios = extraerComentario(data)
-
-  // Creamos el objeto con la información procesada
-  const objetoProcesado = {
-    crate: fechaCreacion,
-    title: titulo,
-    description: descripcion,
-    estado,
-    comentarios
-  }
-
-  return objetoProcesado
-}
-
+const { procesarConComentario } = require('./utils/procesarConComentario')
 async function handleResponse (ctx, flowDynamic, endFlow, state) {
   const elEstado = state.getMyState()
   if (elEstado.codigo) {
     const respuesta = await getReporteByCode(elEstado.codigo)
 
-    console.log('data procesada', procesarData(respuesta))
+    // console.log('data procesada', procesarConComentario(respuesta))
 
-    if (respuesta?.errorMessage) {
+    if (respuesta.errorMessage) {
       return endFlow('🙄 El Reporte no ha sido encontrado.')
     }
 
-    const dataProcesada = procesarData(respuesta)
+    const dataProcesada = procesarConComentario(respuesta)
 
     await flowDynamic('🧐 Buscando ultimo comentario...')
 
     // const cmt = await obtenerUltimoComentario(respuesta)
     const mensaje = dataProcesada.comentarios
       .map((element, i) => {
-        return `${i + 1}. Autor: *${element.autor}*\nComentario: *${
-          element.comentario
-        }*`
+        return `${i + 1}. *${element.create}* de *${
+          element.autor
+        }*\nComentario: *${element.comentario}*`
       })
       .join('\n\n')
     console.log('mensaje ', mensaje)
@@ -60,7 +30,7 @@ async function handleResponse (ctx, flowDynamic, endFlow, state) {
       await flowDynamic(
         `*${dataProcesada.crate}*` +
           '\n' +
-          `${dataProcesada.title}` +
+          `Encabezado: *${dataProcesada.title}*` +
           '\n' +
           `estado: *${dataProcesada.estado}* ` +
           '\n\n' +
@@ -78,7 +48,7 @@ async function handleResponse (ctx, flowDynamic, endFlow, state) {
   }
 }
 
-const patron = /^#VER AAC-(\d+)/
+const patron = /^#VER (\d+)/
 const verCodigoFlow = addKeyword(`${patron}`, {
   regex: true
 })
