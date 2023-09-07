@@ -2,7 +2,7 @@ const { addKeyword } = require('@bot-whatsapp/bot')
 const { verificarNumeroEnArray } = require('../utils/usuarios')
 const { reporteFlow } = require('./reporteFlow')
 const { estadoFlow } = require('./consultaReporte/estatoFlow')
-const { allReportesFlow } = require('./allReportesFlow')
+const { allReportesFlow } = require('./allReportes/allReportesFlow')
 
 let intentos = 3
 

@@ -2,18 +2,20 @@ const { credentials } = require('../utils/credential')
 const axios = require('axios')
 const URLAPI = process.env.APIURL_JIRA
 
-async function getAllReports () {
+async function getAllReports (status = 'ALL_REQUESTS', limit = 10) {
+  const newUrl =
+    URLAPI +
+    `/request?requestStatus=${status}` +
+    `${limit ? '&limit=' + limit : ''}`
+  console.log('😎😋😋😊😎😎', newUrl)
   try {
-    const response = await axios.get(
-      URLAPI + '/request?requestStatus=OPEN_REQUESTS',
-      {
-        headers: {
-          Authorization: 'Basic ' + credentials,
-          Accept: 'application/json',
-          'X-Atlassian-Token': 'no-check'
-        }
+    const response = await axios.get(newUrl, {
+      headers: {
+        Authorization: 'Basic ' + credentials,
+        Accept: 'application/json',
+        'X-Atlassian-Token': 'no-check'
       }
-    )
+    })
 
     const data = await response.data
 

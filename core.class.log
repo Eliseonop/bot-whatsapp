@@ -1,0 +1,53 @@
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: '99E69C0EB52BDC238F',
+    participant: undefined
+  },
+  messageTimestamp: 1694057290,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: '#VER AAC-10',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: '#VER AAC-10',
+  from: '14155238886'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_580c3b6b-03ff-4cef-9a07-fe677aaa77b2',
+  keyword: 'key_ced96c87-6f2e-4c71-b536-c53df2047aa7',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'a1f5f9e373a4e7db3cadec7330b05840'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_7b9e7502-f5b6-4719-8220-d071c2e0a7db',
+  keyword: 'ans_580c3b6b-03ff-4cef-9a07-fe677aaa77b2',
+  answer: '🔎 Buscando reporte...',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '08244089307be99427d2e2fcf3c3d6dd'
+}

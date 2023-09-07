@@ -24,48 +24,43 @@ const createReportFlow = addKeyword('%$#entrnado_createflow', {
     }
     console.log(state.getMyState())
 
-    console.log('Enviar un mail con el con el numero de la persona:', elEstado)
+    console.log('estatus:', elEstado)
   })
 
   .addAnswer(
-    [
-      'Para cancelar Reporte escribe *CANCELAR*',
-      'Para crear Reporte escribe *LISTO* '
-    ],
-    {
-      capture: true
-    },
+    ['⚒ Creando Reporte...'],
+    null,
     async (ctx, { flowDynamic, state, fallBack, gotoFlow, endFlow }) => {
-      if (ctx.body === 'CANCELAR') {
-        return endFlow('Solicitud Cancelada')
-      } else if (ctx.body === 'LISTO') {
-        await flowDynamic('Creando Reporte...')
+      // if (ctx.body === 'CANCELAR') {
+      //   return endFlow('Solicitud Cancelada')
+      // } else if (ctx.body === 'LISTO') {
+      // await flowDynamic('Creando Reporte...')
 
-        const elEstado = state.getMyState()
+      const elEstado = state.getMyState()
 
-        const titulo = `(${elEstado.usuario?.name}) ${elEstado.title}`
+      const titulo = `(${elEstado.usuario?.name}) ${elEstado.title}`
 
-        const idImages = elEstado.idImages ? elEstado.idImages : []
+      const idImages = elEstado.idImages ? elEstado.idImages : []
 
-        const reporteCreado = await createReport(
-          elEstado.descripcion,
-          titulo,
-          idImages
-        )
-        const partes = extractFields(reporteCreado)
+      const reporteCreado = await createReport(
+        elEstado.descripcion,
+        titulo,
+        idImages
+      )
+      const partes = extractFields(reporteCreado)
 
-        const mensaje =
-          '🎉Usted acaba de crear un nuevo reporte✨' +
-          '\n' +
-          `🔎IDENTIFICADOR: *${partes.issueKey}*` +
-          '\n' +
-          `📌ENCABEZADO: *${partes.summary}*`
-        await flowDynamic(mensaje)
+      const mensaje =
+        '🎉Usted acaba de crear un nuevo reporte✨' +
+        '\n' +
+        `🔎IDENTIFICADOR: *${partes.issueKey}*` +
+        '\n' +
+        `📌ENCABEZADO: *${partes.summary}*`
+      await flowDynamic(mensaje)
 
-        return endFlow('😃 Gracias por usar nuestros servicios.')
-      } else {
-        return fallBack('Necesito una respuesta Valida')
-      }
+      return endFlow('😃 Gracias por usar nuestros servicios.')
+      // } else {
+      //   return fallBack('Necesito una respuesta Valida')
+      // }
     }
   )
 

@@ -1,12 +1,12 @@
-// const { obtenerImagenComoBuffer } = require('../../../services/getStatus')
 const { parseAndFormatJiraDate } = require('../../../utils/parseFecha')
 const moment = require('moment-timezone')
 
 async function obtenerUltimoComentario (data) {
   // let imagen
   if (data.values.length > 0) {
+    // console.log(data)
     const ultimoComentario = data.values[data.values.length - 1]
-    console.log('ultimo comentario', ultimoComentario?.attachments?.values)
+    // console.log('ultimo comentario', ultimoComentario)
 
     const misValues = ultimoComentario?.attachments?.values
     console.log('soy el content', misValues)

@@ -7,10 +7,11 @@ const { verificarNumeroEnArray } = require('../utils/usuarios')
 const adwImagen1 =
   'Envíame imagenes *una por una*, por favor.' +
   '\n' +
-  'Para terminar escribe *[Fin]*'
+  'Escriba *FIN* si desea concluir el proceso de carga de una imagen y proceder a la creación del Reporte.'
+const regReportar = /^#REPORTAR$/
 
-const reporteFlow = addKeyword('REPORTAR', {
-  sensitive: true
+const reporteFlow = addKeyword(`${regReportar}`, {
+  regex: true
 })
   .addAction(async (ctx, { flowDynamic, state, endFlow }) => {
     const estado = state.getMyState()
@@ -89,9 +90,6 @@ const reporteFlow = addKeyword('REPORTAR', {
 
         console.log('soy el estado', estado)
         if (estado?.imagenes && estado?.imagenes.length > 0) {
-          // console.log('entrando a images')
-          // console.log('el estado . images', estado.imagenes)
-
           state.update({
             imagenes: [...estado.imagenes, { buffer, mimeType }]
           })
@@ -104,48 +102,18 @@ const reporteFlow = addKeyword('REPORTAR', {
 
         const newstate = state.getMyState()
         console.log('soy el estado 3', newstate)
-        await fallBack('Siguiente imagen Porfavor')
-
-        // const respustaImagenJira = await temporalAttachment(buffer, mimeType)
-
-        //   if (respustaImagenJira.temporaryAttachments) {
-        //     // // await flowDynamic('Guardando Imagen')
-        //     // const temporaryAttachmentIds =
-        //     //   await respustaImagenJira.temporaryAttachments.map(
-        //     //     ({ temporaryAttachmentId }) => temporaryAttachmentId
-        //     //   )
-        //     // const estado = state.getMyState()
-        //     // if (estado.idImages && estado.idImages.length > 0) {
-        //     //   state.update({
-        //     //     idImages: [...estado.idImages, ...temporaryAttachmentIds]
-        //     //   })
-        //     //   // console.log('la respuesta', temporaryAttachmentIds)
-        //     //   // console.log('soy la respuesta')
-        //     // } else {
-        //     //   state.update({
-        //     //     idImages: temporaryAttachmentIds
-        //     //   })
-        //     // }
-
-        //     console.log('soy el staet 44', state.getMyState())
-        //     // await flowDynamic('Imagen guardada')
-        //     await fallBack('Siguiente imagen Porfavor')
-
-        //     //  // TODO: al parecer luego del flow la logica del primer flow sigue,
-        //     // await gotoFlow(createReportFlow)
-        //   }
-        //   console.log(respustaImagenJira)
-      } else if (respuesta === 'fin') {
+        await fallBack('Siguiente imagen, Por favor')
+      } else if (respuesta === 'FIN') {
         const estado = state.getMyState()
         if (estado.imagenes && estado.imagenes.length > 0) {
-          await flowDynamic('Guardando Imagenes')
+          await flowDynamic('Guardando Imagenes...')
         }
         await gotoFlow(createReportFlow)
       } else {
-        console.log('No es una imagen')
+        // console.log('No es una imagen')
         await flowDynamic([
-          'No es una imagen',
-          'Escribe *[Fin]* si ya no quieres subir una imagen'
+          '🤔 No es una imagen ',
+          'Por favor, escriba *FIN* si desea concluir el proceso de carga de una imagen y proceder a la creación del Reporte.'
         ])
         await fallBack('Te lo volvere a preguntar')
       }
