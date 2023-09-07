@@ -8,6 +8,8 @@ const USUARIOS = [
   { name: 'Mauro López', phone: 51933796895 },
   { name: 'Robert Robles', phone: 51969334755 },
   { name: 'Daniel Robles', phone: 51969334754 },
+  { name: 'Joe Robles', phone: 51976331340 },
+  { name: 'Pamela Reyes', phone: 51969334753 },
   { name: 'Sergio Villa', phone: 51920187967 }
 ]
 
