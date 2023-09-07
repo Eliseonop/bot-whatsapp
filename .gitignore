@@ -4,3 +4,4 @@ node_modules
 .env
 /bot_sessions/
 /.idea/
+.env.example
