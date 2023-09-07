@@ -10,7 +10,15 @@ function extraerComentario (data) {
 
     return { comentario, autor, create }
   })
-  return comentarios.filter(a => a.comentario !== '')
+  const listarComent = comentarios.filter(a => a.comentario !== '')
+  const cantidad = listarComent.length
+  const resultado =
+    cantidad >= 3
+      ? listarComent.slice(-3)
+      : cantidad === 2
+        ? listarComent.slice(-2)
+        : listarComent[0]
+  return resultado
 }
 
 module.exports = {

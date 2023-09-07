@@ -79,8 +79,6 @@ function extractFields (data) {
     }
   }
 
-  // TODO: guardar imagens en un array y al ultimo crear el tempral
-  // Crear el objeto resultante
   const result = {
     issueKey,
     createdDate: createdDate.jira, // Usar la fecha de Jira

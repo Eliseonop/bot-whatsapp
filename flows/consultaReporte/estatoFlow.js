@@ -6,7 +6,7 @@ require('moment/locale/es')
 
 // Función común para manejar la respuesta
 async function handleResponse (ctx, flowDynamic, endFlow, fallBack, intentos) {
-  if (ctx.body === 'CANCELAR') {
+  if (ctx.body.toUpperCase().trim() === 'CANCELAR') {
     await flowDynamic('*Cancelando peticion..')
     return endFlow(' *Adios*')
   }
@@ -20,29 +20,8 @@ async function handleResponse (ctx, flowDynamic, endFlow, fallBack, intentos) {
 
     await flowDynamic('🧐 Buscando ultimo comentario...')
 
-    // const cmt = await obtenerUltimoComentario(respuesta)
-    const mensaje = dataProcesada.comentarios
-      .map((element, i) => {
-        return `${i + 1}. *${element.create}* de *${
-          element.autor
-        }*\nComentario: *${element.comentario}*`
-      })
-      .join('\n\n')
-    console.log('mensaje ', mensaje)
     if (dataProcesada) {
-      await flowDynamic(
-        `*${dataProcesada.crate}*` +
-          '\n' +
-          `${dataProcesada.title}` +
-          '\n' +
-          `estado: *${dataProcesada.estado}* ` +
-          '\n\n' +
-          `${
-            dataProcesada.comentarios.length > 0
-              ? `*Ultimos Comentarios:* \n${mensaje}`
-              : 'No hay mensajes'
-          }`
-      )
+      await flowDynamic(`${dataProcesada}`)
 
       return endFlow('Gracias por usar nuestros servicios')
     } else {
@@ -64,7 +43,7 @@ async function handleResponse (ctx, flowDynamic, endFlow, fallBack, intentos) {
 }
 
 const expresionRegular = /^(\d+)/
-const regVer = /^VER$/
+const regVer = /^[Vv][Ee][Rr]$/
 const intentos = 2
 
 const estadoFlow = addKeyword(`${regVer}`, {

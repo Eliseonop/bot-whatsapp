@@ -17,29 +17,8 @@ async function handleResponse (ctx, flowDynamic, endFlow, state) {
 
     await flowDynamic('🧐 Buscando ultimo comentario...')
 
-    // const cmt = await obtenerUltimoComentario(respuesta)
-    const mensaje = dataProcesada.comentarios
-      .map((element, i) => {
-        return `${i + 1}. *${element.create}* de *${
-          element.autor
-        }*\nComentario: *${element.comentario}*`
-      })
-      .join('\n\n')
-    console.log('mensaje ', mensaje)
     if (dataProcesada) {
-      await flowDynamic(
-        `*${dataProcesada.crate}*` +
-          '\n' +
-          `Encabezado: *${dataProcesada.title}*` +
-          '\n' +
-          `estado: *${dataProcesada.estado}* ` +
-          '\n\n' +
-          `${
-            dataProcesada.comentarios.length > 0
-              ? `*Ultimos Comentarios:* \n${mensaje}`
-              : 'No hay mensajes'
-          }`
-      )
+      await flowDynamic(`${dataProcesada}`)
 
       return endFlow('Gracias por usar nuestros servicios')
     } else {
@@ -48,7 +27,7 @@ async function handleResponse (ctx, flowDynamic, endFlow, state) {
   }
 }
 
-const patron = /^VER (\d+)/
+const patron = /^[Vv][Ee][Rr] (\d+)/
 const verCodigoFlow = addKeyword(`${patron}`, {
   regex: true
 })
