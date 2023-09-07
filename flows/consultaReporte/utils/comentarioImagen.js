@@ -1,4 +1,5 @@
 function extraerComentario (data) {
+  if (!(data.comments.values.length > 0)) return []
   const patronImagen = /!.*?\.(jpg|jpeg|png|gif)\|[^!]*!/g
   const comentarios = data.comments.values.map(comment => {
     const autor = comment.author.displayName
