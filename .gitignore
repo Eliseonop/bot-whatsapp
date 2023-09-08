@@ -6,3 +6,6 @@ node_modules
 /.idea/
 *.log
 bot.qr.png
+/queue.class.log/
+queue.class.log
+core.class.log
