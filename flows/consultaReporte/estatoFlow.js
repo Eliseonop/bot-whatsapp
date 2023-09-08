@@ -18,7 +18,7 @@ async function handleResponse (ctx, flowDynamic, endFlow, fallBack, intentos) {
     }
     const dataProcesada = procesarConComentario(respuesta)
 
-    await flowDynamic('🧐 Buscando ultimo comentario...')
+    // await flowDynamic('🧐 Buscando ultimo comentario...')
 
     if (dataProcesada) {
       await flowDynamic(`${dataProcesada}`)

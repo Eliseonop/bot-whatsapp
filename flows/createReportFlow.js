@@ -5,11 +5,16 @@ const { temporalAttachment } = require('../services/tempAttachment')
 const createReportFlow = addKeyword('%$#entrnado_createflow', {
   sensitive: true
 })
-  .addAction(async (ctx, { state }) => {
+  .addAction(async (ctx, { state, endFlow }) => {
     const elEstado = state.getMyState()
     if (elEstado.imagenes && elEstado.imagenes.length > 0) {
       console.log('si hay ', elEstado.imagenes)
       const respustaImagenJira = await temporalAttachment(elEstado.imagenes)
+
+      if (respustaImagenJira.errorMessage) {
+        return endFlow('🙄 El Reporte no ha sido encontrado.')
+      }
+
       if (respustaImagenJira.temporaryAttachments) {
         const temporaryAttachmentIds =
           await respustaImagenJira.temporaryAttachments.map(

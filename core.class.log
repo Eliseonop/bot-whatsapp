@@ -1,0 +1,66 @@
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: 'ED8ECF42BB3B7F2F72',
+    participant: undefined
+  },
+  messageTimestamp: 1694135149,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: 'ayuda',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: 'ayuda',
+  from: '14155238886'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_ef79eb60-dbb5-4743-9666-d5dde51a3fcc',
+  keyword: 'key_61bd53b9-5d25-40f6-a355-921394793515',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'c695c87b1821c5c0eea1937f7238b261'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_9b1dbe04-197a-4e7f-a533-ce09014dc532',
+  keyword: 'ans_ef79eb60-dbb5-4743-9666-d5dde51a3fcc',
+  answer: 'Aquí tienes los comandos disponibles en este chat:\n' +
+    '\n' +
+    'Para ir al menú principal, escribe: *MENU*\n' +
+    'Para crear un nuevo reporte, escribe: *REPORTAR*\n' +
+    'Para comentar un reporte, escribe : *COMENTAR [número]*\n' +
+    'Para ver todos los reportes abiertos, usa: *ABIERTOS*\n' +
+    'Para los reportes cerrados, utiliza: *CERRADOS*\n' +
+    'Para los reportes más recientes, escribe: *REPORTES*\n' +
+    'Si tienes un código AAC específico, solicita el reporte con: *VER [número]*\n' +
+    'Notas:\n' +
+    'Para agilizar la carga enviamos un *máximo de 5 reportes*.\n' +
+    'El *[número ]* es el número  que aparece en el *identificador*,\n' +
+    'Ejemplo: de *AAC-14* su *[número]* es *14*.\n' +
+    '😀 Gracias por usar nuestros servicios.',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '0e36ad2f513089e2a9543c2dbc45c4eb'
+}

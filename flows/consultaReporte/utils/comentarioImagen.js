@@ -1,5 +1,5 @@
 function extraerComentario (data) {
-  if (!(data.comments.values.length > 0)) return []
+  if (data.comments.values.length <= 0) return []
   const patronImagen = /!.*?\.(jpg|jpeg|png|gif)\|[^!]*!/g
   const comentarios = data.comments.values.map(comment => {
     const autor = comment.author.displayName
@@ -12,13 +12,14 @@ function extraerComentario (data) {
     return { comentario, autor, create }
   })
   const listarComent = comentarios.filter(a => a.comentario !== '')
+  console.log(listarComent)
   const cantidad = listarComent.length
   const resultado =
     cantidad >= 3
       ? listarComent.slice(-3)
       : cantidad === 2
         ? listarComent.slice(-2)
-        : listarComent[0]
+        : listarComent
   return resultado
 }
 

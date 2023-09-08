@@ -15,21 +15,17 @@ function procesarConComentario (data) {
 
   // Filtramos los comentarios y procesamos el texto
   const comentarios = extraerComentario(data)
-  // console.log('soy comentarios', comentarios)
-  let mensaje = 'No hay comentarios';
-  if (comentarios) {
-    const dataMensaje = comentarios.map((element, i) => {
-      return `${i + 1}. *${element.create}* de *${
-          element.autor
-      }*\nComentario: *${element.comentario}*`
-    })
-        .join('\n\n')
-    mensaje = `*Ultimos Comentarios:* \n${dataMensaje}`
-  }
-  // console.log('soy data', dataMensaje)
+  console.log(comentarios)
+  const dataMensaje = comentarios.map((element, i) => {
+    return `${i + 1}. *${element.create}* \n *${element.comentario}*`
+  })
+    .join('\n\n')
+  const mensaje = `${
+    comentarios.length > 0
+          ? `*Ultimos Comentarios:* \n${dataMensaje}`
+          : 'No hay mensajes'
+      }`
 
-
-  // Creamos el objeto con la información procesada
   const objetoProcesado = {
     crate: fechaCreacion,
     title: titulo,
@@ -38,13 +34,13 @@ function procesarConComentario (data) {
     mensaje
   }
 
-  return `*${objetoProcesado.crate}*` +
+  return `*Creado ${objetoProcesado.crate}*` +
   '\n\n' +
   `Encabezado: *${objetoProcesado.title}*` +
   '\n' +
   `Estado: *${objetoProcesado.estado}* ` +
   '\n\n' +
-  `${objetoProcesado.mensaje}`;
+  `${objetoProcesado.mensaje}`
 }
 
 module.exports = { procesarConComentario }
