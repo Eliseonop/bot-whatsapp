@@ -18,20 +18,20 @@ const mensaje =
     '😀 Gracias por usar nuestros servicios.'
 
 const ayudaFlujo = addKeyword(`${regAyuda}`, {
-    regex: true
+  regex: true
 })
-    .addAction(async (ctx, { flowDynamic, state, endFlow }) => {
-        const usuario = verificarNumeroEnArray(+ctx.from)
-        if (usuario !== null) {
-            console.log('el usuario si tiene permisos ')
+  .addAction(async (ctx, { flowDynamic, state, endFlow }) => {
+    const usuario = verificarNumeroEnArray(+ctx.from)
+    if (usuario !== null) {
+      console.log('el usuario si tiene permisos ')
 
-            await flowDynamic([`👋Bienvenido *${usuario.name}*👋`])
-        } else {
-            await flowDynamic('🤨 El Usuario no tiene permisos')
-            return endFlow('Adiós')
-        }
-    })
-    .addAnswer(mensaje)
+      await flowDynamic([`👋Bienvenido *${usuario.name}*👋`])
+    } else {
+      await flowDynamic('🤨 El Usuario no tiene permisos')
+      return endFlow('Adiós')
+    }
+  })
+  .addAnswer(mensaje)
 module.exports = {
-    ayudaFlujo
+  ayudaFlujo
 }
