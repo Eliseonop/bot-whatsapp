@@ -24,7 +24,7 @@ const ayudaFlujo = addKeyword(`${regexAyuda}`, {
   regex: true
 })
   .addAction(async (ctx, { flowDynamic, state, endFlow }) => {
-    await verifyUser(ctx, endFlow, flowDynamic, state,true)
+    await verifyUser(ctx, endFlow, flowDynamic, state, true)
   })
   .addAnswer(mensaje)
 module.exports = {
