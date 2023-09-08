@@ -7,6 +7,7 @@ const mensaje =
 
     'Para ir al menú principal, escribe: *MENU*\n' +
     'Para crear un nuevo reporte, escribe: *REPORTAR*\n' +
+    'Para comentar un reporte, escribe : *COMENTAR [numero]*\n' +
     'Para ver todos los reportes abiertos, usa: *ABIERTOS*\n' +
     'Para los reportes cerrados, utiliza: *CERRADOS*\n' +
     'Para los reportes más recientes, escribe: *REPORTES*\n' +
@@ -14,7 +15,9 @@ const mensaje =
     'Si tienes un código AAC específico, solicita el reporte con: *VER [numero]*\n' +
     'Ejemplo: Para ver el reporte de AAC-41 escriba *VER 41*\n\n' +
 
-    'Nota: Para agilizar la carga enviamos un *máximo de 5 reportes*.\n' +
+    'Notas:\nPara agilizar la carga enviamos un *máximo de 5 reportes*.\n' +
+    'El *[numero]* es el numero que aparece en el *identificado*,\nEjemplo: de *AAC-14* su *[numero]* es *14*.\n' +
+
     '😀 Gracias por usar nuestros servicios.'
 
 const ayudaFlujo = addKeyword(`${regAyuda}`, {
