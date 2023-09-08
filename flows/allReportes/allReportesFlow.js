@@ -3,9 +3,9 @@ require('moment/locale/es')
 const { getAllReports } = require('../../services/getAllReports')
 const { traducirEstado } = require('../consultaReporte/utils/traducirEstado')
 const { verificarNumeroEnArray } = require('../../utils/usuarios')
-const regreportes = /^[Rr][Ee][Pp][Oo][Rr][Tt][Ee][Ss]$/
+const regexReportes = /^[Rr][Ee][Pp][Oo][Rr][Tt][Ee][Ss]$/
 
-const allReportesFlow = addKeyword(`${regreportes}`, {
+const allReportesFlow = addKeyword(`${regexReportes}`, {
   regex: true
 })
   .addAction(async (ctx, { flowDynamic, state, endFlow }) => {
@@ -89,5 +89,5 @@ function transformDataToReportsArray (data) {
 }
 
 module.exports = {
-  allReportesFlow
+  allReportesFlow, regexReportes
 }

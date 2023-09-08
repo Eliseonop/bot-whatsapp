@@ -3,9 +3,9 @@ require('moment/locale/es')
 const { getAllReports } = require('../../services/getAllReports')
 const { verificarNumeroEnArray } = require('../../utils/usuarios')
 
-const regCerrados = /^[Cc][Ee][Rr][Rr][Aa][Dd][Oo][Ss]$/
+const regexCerrados = /^[Cc][Ee][Rr][Rr][Aa][Dd][Oo][Ss]$/
 
-const allCerradosFlow = addKeyword(`${regCerrados}`, {
+const allCerradosFlow = addKeyword(`${regexCerrados}`, {
   regex: true
 })
   .addAction(async (ctx, { flowDynamic, state, endFlow }) => {
@@ -114,5 +114,5 @@ function traducirEstado (estado) {
   return estadoTraducido[primeraPalabra] || estado
 }
 module.exports = {
-  allCerradosFlow
+  allCerradosFlow, regexCerrados
 }

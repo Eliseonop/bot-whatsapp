@@ -43,18 +43,15 @@ async function handleResponse (ctx, flowDynamic, endFlow, fallBack, intentos) {
 }
 
 const expresionRegular = /^(\d+)/
-const regVer = /^[Vv][Ee][Rr]$/
+const regexVer = /^[Vv][Ee][Rr]$/
 const intentos = 2
 
-const estadoFlow = addKeyword(`${regVer}`, {
+const estadoFlow = addKeyword(`${regexVer}`, {
   regex: true
 })
   .addAction(async (ctx, { flowDynamic, state, endFlow }) => {
     const usuario = verificarNumeroEnArray(+ctx.from)
-    if (usuario !== null) {
-      console.log('el usuario si tiene permisos ')
-      await flowDynamic([`👋Bienvenido *${usuario.name}*👋`])
-    } else {
+    if (usuario === null) {
       await flowDynamic('🤨 El Usuario no tiene permisos')
       return endFlow('Adios')
     }
@@ -65,10 +62,13 @@ const estadoFlow = addKeyword(`${regVer}`, {
       capture: true
     },
     async (ctx, { endFlow, fallBack, flowDynamic }) => {
+      if (regexVer.test(ctx.body)) {
+        return fallBack('🤔 No me envies el comando, intentalo de nuevo.')
+      }
       await handleResponse(ctx, flowDynamic, endFlow, fallBack, intentos)
     }
   )
 
 module.exports = {
-  estadoFlow
+  estadoFlow, regexVer
 }

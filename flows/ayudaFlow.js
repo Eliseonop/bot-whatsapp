@@ -1,7 +1,7 @@
 const { addKeyword } = require('@bot-whatsapp/bot')
-const { verificarNumeroEnArray } = require('../utils/usuarios')
+const { verifyUser } = require('../utils/verifyUser')
 
-const regAyuda = /^[Aa][Yy][Uu][Dd][Aa]$/
+const regexAyuda = /^[Aa][Yy][Uu][Dd][Aa]$/
 const mensaje =
     'Aquí tienes los comandos disponibles en este chat:\n\n' +
 
@@ -20,21 +20,13 @@ const mensaje =
 
     '😀 Gracias por usar nuestros servicios.'
 
-const ayudaFlujo = addKeyword(`${regAyuda}`, {
+const ayudaFlujo = addKeyword(`${regexAyuda}`, {
   regex: true
 })
   .addAction(async (ctx, { flowDynamic, state, endFlow }) => {
-    const usuario = verificarNumeroEnArray(+ctx.from)
-    if (usuario !== null) {
-      console.log('el usuario si tiene permisos ')
-
-      await flowDynamic([`👋Bienvenido *${usuario.name}*👋`])
-    } else {
-      await flowDynamic('🤨 El Usuario no tiene permisos')
-      return endFlow('Adiós')
-    }
+    await verifyUser(ctx, endFlow, flowDynamic, true)
   })
   .addAnswer(mensaje)
 module.exports = {
-  ayudaFlujo
+  ayudaFlujo, regexAyuda
 }

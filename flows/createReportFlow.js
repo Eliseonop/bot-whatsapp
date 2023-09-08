@@ -8,7 +8,6 @@ const createReportFlow = addKeyword('%$#entrnado_createflow', {
   .addAction(async (ctx, { state, endFlow }) => {
     const elEstado = state.getMyState()
     if (elEstado.imagenes && elEstado.imagenes.length > 0) {
-      console.log('si hay ', elEstado.imagenes)
       const respustaImagenJira = await temporalAttachment(elEstado.imagenes)
 
       if (respustaImagenJira.errorMessage) {
@@ -25,11 +24,7 @@ const createReportFlow = addKeyword('%$#entrnado_createflow', {
           idImages: temporaryAttachmentIds
         })
       }
-      console.log(respustaImagenJira)
     }
-    console.log(state.getMyState())
-
-    console.log('estatus:', elEstado)
   })
 
   .addAnswer(

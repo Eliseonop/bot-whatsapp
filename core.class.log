@@ -2,10 +2,63 @@
   key: {
     remoteJid: '14155238886@s.whatsapp.net',
     fromMe: false,
-    id: 'ED8ECF42BB3B7F2F72',
+    id: 'B3F0172E45C13D3A56',
     participant: undefined
   },
-  messageTimestamp: 1694135149,
+  messageTimestamp: 1694189199,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: 'reportar',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: 'reportar',
+  from: '14155238886'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_1672e773-5ffb-42e4-8043-4469577d2ef4',
+  keyword: 'key_d6e9ebf4-6fc9-4169-80a4-f9d5a92d27bc',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '99687838bbbb7d11933169e5e8c7e4d5'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_98d257df-64c4-4676-a156-b4f3a84961a8',
+  keyword: 'ans_1672e773-5ffb-42e4-8043-4469577d2ef4',
+  answer: '¿Proporcióname un título breve, por favor?\nEjemplo: *Pantalla sin imagen*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'e42a2d68d2f3fabeb95744cdac9aacd3'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: '5612629FF87BD36067',
+    participant: undefined
+  },
+  messageTimestamp: 1694189203,
   pushName: '14155238886',
   broadcast: false,
   message: Message {
@@ -18,49 +71,4 @@
   verifiedBizName: 'Twilio',
   body: 'ayuda',
   from: '14155238886'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_ef79eb60-dbb5-4743-9666-d5dde51a3fcc',
-  keyword: 'key_61bd53b9-5d25-40f6-a355-921394793515',
-  answer: '__call_action__',
-  options: {
-    media: null,
-    buttons: [],
-    capture: false,
-    child: null,
-    delay: 0,
-    nested: [],
-    keyword: {},
-    callback: true
-  },
-  refSerialize: 'c695c87b1821c5c0eea1937f7238b261'
-}
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_9b1dbe04-197a-4e7f-a533-ce09014dc532',
-  keyword: 'ans_ef79eb60-dbb5-4743-9666-d5dde51a3fcc',
-  answer: 'Aquí tienes los comandos disponibles en este chat:\n' +
-    '\n' +
-    'Para ir al menú principal, escribe: *MENU*\n' +
-    'Para crear un nuevo reporte, escribe: *REPORTAR*\n' +
-    'Para comentar un reporte, escribe : *COMENTAR [número]*\n' +
-    'Para ver todos los reportes abiertos, usa: *ABIERTOS*\n' +
-    'Para los reportes cerrados, utiliza: *CERRADOS*\n' +
-    'Para los reportes más recientes, escribe: *REPORTES*\n' +
-    'Si tienes un código AAC específico, solicita el reporte con: *VER [número]*\n' +
-    'Notas:\n' +
-    'Para agilizar la carga enviamos un *máximo de 5 reportes*.\n' +
-    'El *[número ]* es el número  que aparece en el *identificador*,\n' +
-    'Ejemplo: de *AAC-14* su *[número]* es *14*.\n' +
-    '😀 Gracias por usar nuestros servicios.',
-  options: {
-    media: null,
-    buttons: [],
-    capture: false,
-    child: null,
-    delay: 0,
-    nested: [],
-    keyword: {},
-    callback: false
-  },
-  refSerialize: '0e36ad2f513089e2a9543c2dbc45c4eb'
 }

@@ -1,7 +1,8 @@
 const { addKeyword } = require('@bot-whatsapp/bot')
-const { verificarNumeroEnArray } = require('../../utils/usuarios')
+// const { verificarNumeroEnArray } = require('../../utils/usuarios')
 const { getReporteByCode } = require('../../services/getReporteByCode')
 const { procesarConComentario } = require('./utils/procesarConComentario')
+const { verifyUser } = require('../../utils/verifyUser')
 async function handleResponse (ctx, flowDynamic, endFlow, state) {
   const elEstado = state.getMyState()
   if (elEstado.codigo) {
@@ -27,31 +28,25 @@ async function handleResponse (ctx, flowDynamic, endFlow, state) {
   }
 }
 
-const patron = /^[Vv][Ee][Rr] (\d+)/
-const verCodigoFlow = addKeyword(`${patron}`, {
+const regexVerCodigo = /^[Vv][Ee][Rr] (\d+)/
+const verCodigoFlow = addKeyword(`${regexVerCodigo}`, {
   regex: true
 })
   .addAction(async (ctx, { flowDynamic, state, endFlow }) => {
-    const texto = ctx.body
-    const arrayDePalabras = texto.split(' ')
-    console.log(arrayDePalabras[1])
-    state.update({
-      codigo: arrayDePalabras[1]
-    })
-
-    const usuario = verificarNumeroEnArray(+ctx.from)
-    if (usuario !== null) {
-      console.log('el usuario si tiene permisos ')
-      await flowDynamic([`👋Bienvenido *${usuario.name}*👋`])
-    } else {
-      await flowDynamic('🤨 El Usuario no tiene permisos')
-      return endFlow('Adios')
-    }
+    await verifyUser(ctx, endFlow, flowDynamic)
   })
   .addAnswer(
     '🔎 Buscando reporte...',
     null,
     async (ctx, { state, flowDynamic, endFlow }) => {
+      const texto = ctx.body
+      const arrayDePalabras = texto.split(' ')
+      state.update({
+        codigo: arrayDePalabras[1]
+      })
+
+      const myState = state.getMyState()
+      console.log('soy el my state', myState)
       await handleResponse(ctx, flowDynamic, endFlow, state)
     }
   )
