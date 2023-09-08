@@ -2,10 +2,10 @@
   key: {
     remoteJid: '14155238886@s.whatsapp.net',
     fromMe: false,
-    id: 'CA9D8877C08C9CC70E',
+    id: 'ED8ECF42BB3B7F2F72',
     participant: undefined
   },
-  messageTimestamp: 1694134437,
+  messageTimestamp: 1694135149,
   pushName: '14155238886',
   broadcast: false,
   message: Message {
@@ -20,8 +20,8 @@
   from: '14155238886'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_701deccc-2c8a-4832-9f68-5b9c264954d0',
-  keyword: 'key_b4ec48bd-6ea7-4088-b4a3-373e6f0f3af2',
+  ref: 'ans_ef79eb60-dbb5-4743-9666-d5dde51a3fcc',
+  keyword: 'key_61bd53b9-5d25-40f6-a355-921394793515',
   answer: '__call_action__',
   options: {
     media: null,
@@ -33,27 +33,24 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '5d32859b2ddb4a5fa31727b854f4b919'
+  refSerialize: 'c695c87b1821c5c0eea1937f7238b261'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_829237a7-3eeb-4bd0-9813-a44beddfc334',
-  keyword: 'ans_701deccc-2c8a-4832-9f68-5b9c264954d0',
+  ref: 'ans_9b1dbe04-197a-4e7f-a533-ce09014dc532',
+  keyword: 'ans_ef79eb60-dbb5-4743-9666-d5dde51a3fcc',
   answer: 'Aquí tienes los comandos disponibles en este chat:\n' +
     '\n' +
     'Para ir al menú principal, escribe: *MENU*\n' +
     'Para crear un nuevo reporte, escribe: *REPORTAR*\n' +
-    'Para comentar un reporte, escribe : *COMENTAR [numero]*\n' +
+    'Para comentar un reporte, escribe : *COMENTAR [número]*\n' +
     'Para ver todos los reportes abiertos, usa: *ABIERTOS*\n' +
     'Para los reportes cerrados, utiliza: *CERRADOS*\n' +
     'Para los reportes más recientes, escribe: *REPORTES*\n' +
-    'Para ver un reporte específico, usa: *VER [número]*\n' +
-    'Si tienes un código AAC específico, solicita el reporte con: *VER [numero]*\n' +
-    'Ejemplo: Para ver el reporte de AAC-41 escriba *VER 41*\n' +
-    '\n' +
+    'Si tienes un código AAC específico, solicita el reporte con: *VER [número]*\n' +
     'Notas:\n' +
     'Para agilizar la carga enviamos un *máximo de 5 reportes*.\n' +
-    'El *[número ]* es el número  que aparece en el *identificado*,\n' +
-    'Ejemplo: de *AAC-14* su *[número ]* es *14*.\n' +
+    'El *[número ]* es el número  que aparece en el *identificador*,\n' +
+    'Ejemplo: de *AAC-14* su *[número]* es *14*.\n' +
     '😀 Gracias por usar nuestros servicios.',
   options: {
     media: null,
@@ -65,5 +62,5 @@
     keyword: {},
     callback: false
   },
-  refSerialize: '661c69d52f0bb4efe0b04e1a32a0b366'
+  refSerialize: '0e36ad2f513089e2a9543c2dbc45c4eb'
 }
