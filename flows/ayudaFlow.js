@@ -16,7 +16,7 @@ const mensaje =
     'Ejemplo: Para ver el reporte de AAC-41 escriba *VER 41*\n\n' +
 
     'Notas:\nPara agilizar la carga enviamos un *máximo de 5 reportes*.\n' +
-    'El *[numero]* es el numero que aparece en el *identificado*,\nEjemplo: de *AAC-14* su *[numero]* es *14*.\n' +
+    'El *[número ]* es el número  que aparece en el *identificado*,\nEjemplo: de *AAC-14* su *[número ]* es *14*.\n' +
 
     '😀 Gracias por usar nuestros servicios.'
 
