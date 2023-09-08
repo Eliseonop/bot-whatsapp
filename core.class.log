@@ -1,0 +1,69 @@
+[handleMsg]:  {
+  key: {
+    remoteJid: '14155238886@s.whatsapp.net',
+    fromMe: false,
+    id: 'CA9D8877C08C9CC70E',
+    participant: undefined
+  },
+  messageTimestamp: 1694134437,
+  pushName: '14155238886',
+  broadcast: false,
+  message: Message {
+    conversation: 'ayuda',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  verifiedBizName: 'Twilio',
+  body: 'ayuda',
+  from: '14155238886'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_701deccc-2c8a-4832-9f68-5b9c264954d0',
+  keyword: 'key_b4ec48bd-6ea7-4088-b4a3-373e6f0f3af2',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '5d32859b2ddb4a5fa31727b854f4b919'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_829237a7-3eeb-4bd0-9813-a44beddfc334',
+  keyword: 'ans_701deccc-2c8a-4832-9f68-5b9c264954d0',
+  answer: 'Aquí tienes los comandos disponibles en este chat:\n' +
+    '\n' +
+    'Para ir al menú principal, escribe: *MENU*\n' +
+    'Para crear un nuevo reporte, escribe: *REPORTAR*\n' +
+    'Para comentar un reporte, escribe : *COMENTAR [numero]*\n' +
+    'Para ver todos los reportes abiertos, usa: *ABIERTOS*\n' +
+    'Para los reportes cerrados, utiliza: *CERRADOS*\n' +
+    'Para los reportes más recientes, escribe: *REPORTES*\n' +
+    'Para ver un reporte específico, usa: *VER [número]*\n' +
+    'Si tienes un código AAC específico, solicita el reporte con: *VER [numero]*\n' +
+    'Ejemplo: Para ver el reporte de AAC-41 escriba *VER 41*\n' +
+    '\n' +
+    'Notas:\n' +
+    'Para agilizar la carga enviamos un *máximo de 5 reportes*.\n' +
+    'El *[número ]* es el número  que aparece en el *identificado*,\n' +
+    'Ejemplo: de *AAC-14* su *[número ]* es *14*.\n' +
+    '😀 Gracias por usar nuestros servicios.',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '661c69d52f0bb4efe0b04e1a32a0b366'
+}
