@@ -1,14 +1,12 @@
-### Tcontur Bot de Generación de Etiquetas de Soporte
+# Tcontur Bot de Generación de Etiquetas de Soporte
 
-<p align="center">
-  <img width="400" src="./descarga.jpeg">
-</p>
+![Logo Tcontur](./descarga.jpeg)
 
-El equipo de desarrolladores de Tcontur ha creado un bot que se encarga de generar etiquetas de soporte para facilitar el seguimiento de los reportes y mantener a los desarrolladores informados sobre los problemas del software.
+El equipo de desarrolladores de Tcontur ha creado un bot especializado en la generación de etiquetas de soporte. Esta herramienta agiliza el seguimiento de los reportes y mantiene a los desarrolladores informados sobre los problemas del software.
 
-### Comandos Disponibles
+## Comandos Disponibles
 
-Aquí tienes una lista de los comandos que puedes utilizar con el bot:
+A continuación, te presentamos una lista de los comandos disponibles para utilizar con nuestro bot:
 
 - Ir al menú principal: `MENU`
 - Crear un nuevo reporte: `REPORTAR`
@@ -18,10 +16,12 @@ Aquí tienes una lista de los comandos que puedes utilizar con el bot:
 - Ver los reportes más recientes: `REPORTES`
 - Ver los últimos comentarios en un reporte: `VER [número]`
 
-**Notas:**
+**Notas Importantes:**
 
 - Para agilizar la carga, enviamos un máximo de 5 reportes a la vez.
-- El `[número]` se refiere al número que aparece en el identificador del reporte. Por ejemplo, si el identificador es `AAC-14`, el `[número]` es `14`.
-- Para utilizar este sistema, es necesario que su número esté registrado. Para obtener más información, póngase en contacto con un miembro activo del equipo de Tcontur.
+- El `[número]` se refiere al identificador único de cada reporte. Por ejemplo, si el identificador es `AAC-14`, el `[número]` es `14`.
+- Para utilizar nuestro sistema, es necesario que tu número esté registrado. Si deseas obtener más información al respecto, por favor, ponte en contacto con un miembro activo del equipo de Tcontur.
 
-<center>¡Gracias por utilizar nuestros servicios! 😃</center>
+---
+
+¡Agradecemos tu confianza en nuestros servicios! 😃
