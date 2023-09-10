@@ -4,7 +4,7 @@ const { downloadMediaMessage } = require('@whiskeysockets/baileys')
 // const { temporalAttachment } = require('../services/tempAttachment')
 // const { verificarNumeroEnArray } = require('../utils/usuarios')
 const { verifyUser } = require('../utils/verifyUser')
-const { coincideConRegexArray } = require('../utils/verifyComands')
+// const { coincideConRegexArray } = require('../utils/verifyComands')
 
 const adwImagen1 =
   'Envíame imagenes *una por una*, por favor.' +
@@ -36,7 +36,7 @@ const reporteFlow = addKeyword(`${regexReportar}`, {
       if (ctx.body.toUpperCase().trim() === 'CANCELAR') {
         return endFlow('Solicitud Cancelada')
       }
-      if (coincideConRegexArray(ctx.body)) {
+      if (regexReportar.test(ctx.body)) {
         return fallBack('🤔 No me envies el comando, intentalo de nuevo.')
       }
 

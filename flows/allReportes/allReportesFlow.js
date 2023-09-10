@@ -2,28 +2,22 @@ const { addKeyword } = require('@bot-whatsapp/bot')
 require('moment/locale/es')
 const { getAllReports } = require('../../services/getAllReports')
 const { traducirEstado } = require('../consultaReporte/utils/traducirEstado')
-const { verificarNumeroEnArray } = require('../../utils/usuarios')
+const { transformDataToReportsArray } = require('./utils/transFormData')
+const { verifyUser } = require('../../utils/verifyUser')
 const regexReportes = /^[Rr][Ee][Pp][Oo][Rr][Tt][Ee][Ss]$/
 
 const allReportesFlow = addKeyword(`${regexReportes}`, {
   regex: true
 })
   .addAction(async (ctx, { flowDynamic, state, endFlow }) => {
-    const usuario = verificarNumeroEnArray(+ctx.from)
-    if (usuario !== null) {
-      console.log('el usuario si tiene permisos ')
-      await flowDynamic([`👋Bienvenido *${usuario.name}*👋`])
-    } else {
-      await flowDynamic('🤨 El Usuario no tiene permisos')
-      return endFlow('Adios')
-    }
+    await verifyUser(ctx, endFlow, flowDynamic)
   })
   .addAnswer(
     ['Solicitando Reportes'],
     null,
     async (ctx, { endFlow, fallBack, flowDynamic }) => {
       const data = await getAllReports('ALL_REQUESTS')
-
+      await flowDynamic('Los ultimos 5 con activadad fueron')
       console.log('soy la data', data)
       const dataReportes = await transformDataToReportsArray(data)
 
@@ -38,7 +32,7 @@ const allReportesFlow = addKeyword(`${regexReportes}`, {
       } else {
         await flowDynamic('No hay reportes disponibles')
       }
-      return endFlow('Gracias por usar nuestros Servicios')
+      // return await endFlow('Gracias por usar nuestros Servicios')
     }
   )
 
@@ -58,34 +52,6 @@ function listarMensajes (datos) {
     lista.push(mensaje)
   })
   return lista
-}
-
-function transformDataToReportsArray (data) {
-  const reportsToShow = []
-
-  data.values.forEach(report => {
-    const reportToShow = {
-      issueKey: report.issueKey,
-      summary: report.requestFieldValues.find(
-        field => field.fieldId === 'summary'
-      ).value,
-      createdDate: report.createdDate.friendly,
-      currentStatus: report.currentStatus.status
-    }
-
-    if (
-      report.requestFieldValues.find(field => field.fieldId === 'attachment')
-        .value.length > 0
-    ) {
-      reportToShow.attachmentsCount = report.requestFieldValues.find(
-        field => field.fieldId === 'attachment'
-      ).value.length
-    }
-
-    reportsToShow.push(reportToShow)
-  })
-
-  return reportsToShow
 }
 
 module.exports = {

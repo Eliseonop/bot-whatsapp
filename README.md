@@ -1,8 +1,8 @@
-# Tcontur Bot de Generación de Etiquetas de Soporte
+# Tcontur Whatsapp Bot de Generación de Etiquetas de Soporte
 
 ![Logo Tcontur](./descarga.jpeg)
 
-El equipo de desarrolladores de Tcontur ha creado un bot especializado en la generación de etiquetas de soporte. Esta herramienta agiliza el seguimiento de los reportes y mantiene a los desarrolladores informados sobre los problemas del software.
+El equipo de desarrolladores de Tcontur ha creado un Whatsapp bot especializado en la generación de etiquetas de soporte. Esta herramienta agiliza el seguimiento de los reportes y mantiene a los desarrolladores informados sobre los problemas del software.
 
 ## Comandos Disponibles
 
