@@ -8,7 +8,7 @@ async function verifyUser (ctx, endFlow, flowDynamic, state, welcom) {
       await flowDynamic([`👋Bienvenido *${usuario.name}*👋`])
     }
     if (state) {
-      console.log('en el state')
+      // console.log('en el state')
       state.update({
         usuario
       })

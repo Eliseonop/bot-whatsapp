@@ -45,8 +45,8 @@ const verCodigoFlow = addKeyword(`${regexVerCodigo}`, {
         codigo: arrayDePalabras[1]
       })
 
-      const myState = state.getMyState()
-      console.log('soy el my state', myState)
+      // const myState = state.getMyState()
+      // console.log('soy el my state', myState)
       await handleResponse(ctx, flowDynamic, endFlow, state)
     }
   )
