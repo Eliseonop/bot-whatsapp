@@ -28,7 +28,7 @@ async function handleResponse (ctx, flowDynamic, endFlow, fallBack, intentos) {
       await flowDynamic('🤷‍♂️ No hay comentarios disponibles')
     }
 
-    console.log(respuesta)
+    // console.log(respuesta)
   } else {
     await flowDynamic('‼️ Error Identificador no valido ‼️')
     intentos--

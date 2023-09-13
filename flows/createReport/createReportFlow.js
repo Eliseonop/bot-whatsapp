@@ -1,12 +1,15 @@
 const { addKeyword } = require('@bot-whatsapp/bot')
-const { createReport } = require('../services/createReport')
-const { temporalAttachment } = require('../services/tempAttachment')
+const { createReport } = require('../../services/createReport')
+const { temporalAttachment } = require('../../services/tempAttachment')
 
 const createReportFlow = addKeyword('%$#entrnado_createflow', {
   sensitive: true
 })
   .addAction(async (ctx, { state, endFlow }) => {
     const elEstado = state.getMyState()
+
+    // console.log('aqui en el estaod de ', elEstado)
+
     if (elEstado.imagenes && elEstado.imagenes.length > 0) {
       const respustaImagenJira = await temporalAttachment(elEstado.imagenes)
 
@@ -42,11 +45,16 @@ const createReportFlow = addKeyword('%$#entrnado_createflow', {
 
       const idImages = elEstado.idImages ? elEstado.idImages : []
 
+      // console.log('el estado', elEstado)
+
       const reporteCreado = await createReport(
         elEstado.descripcion,
         titulo,
         idImages
       )
+
+      // console.log('titulo', titulo)
+      // console.log('idimages', idImages)
       const partes = extractFields(reporteCreado)
 
       const mensaje =

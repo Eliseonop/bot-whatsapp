@@ -25,8 +25,8 @@ const comentarFlow = addKeyword(`${regexComentar}`, {
       etiqueta: arrayDePalabras[1]
     })
 
-    const miState2 = state.getMyState()
-    console.log('soy el miState2', miState2)
+    // const miState2 = state.getMyState()
+    // console.log('soy el miState2', miState2)
 
     const respuesta = await getReporteByCode(arrayDePalabras[1])
 
@@ -45,7 +45,7 @@ const comentarFlow = addKeyword(`${regexComentar}`, {
   }).addAnswer(['❌ Escribe *CANCELAR* para *salir*.', '✍ Dime tu comentario, Por favor'], { capture: true }, async (ctx, { flowDynamic, endFlow, state, fallBack }) => {
     const { etiqueta, usuario } = state.getMyState()
 
-    console.log('etiqueta', etiqueta, usuario)
+    // console.log('etiqueta', etiqueta, usuario)
     if (ctx.body.toUpperCase().trim() === 'CANCELAR') {
       return endFlow('😀 Vuelve pronto.')
     }
@@ -53,14 +53,14 @@ const comentarFlow = addKeyword(`${regexComentar}`, {
       return fallBack('🤔 No me envies el comando, intentalo de nuevo.')
     }
     //   console.log('comentario', ctx.body)
-    const comentario = `(${usuario}) - ${ctx.body}`
+    const comentario = `(${usuario.name}) - ${ctx.body}`
     const crearComentario = await postComment(comentario, etiqueta)
     if (crearComentario?.errorMessage) {
       return endFlow('😱 Error, El Reporte no ha sido encontrado.')
     }
-    console.log('respuesta', crearComentario)
+    // console.log('respuesta', crearComentario)
     if (crearComentario.id) {
-      await flowDynamic(['✔ Comentario agregado correctamente', `Escribe *VER ${etiqueta} para ver los comentarios`])
+      await flowDynamic(['✔ Comentario agregado correctamente', `Escribe *VER ${etiqueta}* para ver los comentarios`])
     }
 
     return endFlow('Gracias por usar nuestros servicios.')
