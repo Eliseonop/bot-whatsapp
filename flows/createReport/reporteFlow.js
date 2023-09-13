@@ -30,7 +30,7 @@ const reporteFlow = addKeyword(`${regexReportar}`, {
         return endFlow('Solicitud Cancelada')
       }
       if (regexReportar.test(ctx.body)) {
-        return fallBack(['🤔 No me envies el comando, intentalo de nuevo.', 'O Para cancelar escribre *CANCELAR*'])
+        return fallBack(['🤔 No me envies el comando, intentalo de nuevo.', 'O Para cancelar escribe *CANCELAR*'])
       }
 
       state.update({
@@ -48,7 +48,7 @@ const reporteFlow = addKeyword(`${regexReportar}`, {
     async (ctx, { flowDynamic, state, fallBack, gotoFlow, endFlow }) => {
       // console.log(ctx.message)
       if (regexReportar.test(ctx.message?.conversation)) {
-        return fallBack(['🤔 No me envies el comando, intentalo de nuevo.', 'O Para cancelar escribre *CANCELAR*'])
+        return fallBack(['🤔 No me envies el comando, intentalo de nuevo.', 'O Para cancelar escribe *CANCELAR*'])
       }
       if (ctx.body.toUpperCase().trim() === 'CANCELAR') {
         return endFlow('Solicitud Cancelada')
@@ -57,7 +57,7 @@ const reporteFlow = addKeyword(`${regexReportar}`, {
       const respuesta = ctx?.message?.conversation.toUpperCase().trim()
       if (respuesta === 'ENVIAR') {
         if (estado?.descripcion) {
-          console.log('clg descip', estado.descripcion)
+          // console.log('clg descip', estado.descripcion)
           await gotoFlow(createReportFlow)
           return
         } else {
