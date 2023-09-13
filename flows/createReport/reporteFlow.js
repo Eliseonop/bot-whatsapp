@@ -110,7 +110,7 @@ const reporteFlow = addKeyword(`${regexReportar}`, {
         // await fallBack('')
       }
 
-      await fallBack('Anotado, algo mas')
+      await fallBack('Anotado, ¿Algo más?')
     }
   )
 

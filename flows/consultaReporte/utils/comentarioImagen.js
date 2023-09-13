@@ -11,7 +11,7 @@ function extraerComentario (data) {
       // .split('\n\n')[0]
       // .trim()
 
-    console.log('soy el comment body', comment.body)
+    // console.log('soy el comment body', comment.body)
 
     return { comentario, autor, create }
   })
