@@ -15,9 +15,9 @@ function procesarConComentario (data) {
 
   // Filtramos los comentarios y procesamos el texto
   const comentarios = extraerComentario(data)
-  console.log(comentarios)
+  // console.log(comentarios)
   const dataMensaje = comentarios.map((element, i) => {
-    return `${i + 1}. *${element.create}* \n *${element.comentario}*`
+    return `${i + 1}. *${element.create}* \n ${element.comentario}`
   })
     .join('\n\n')
   const mensaje = `${
