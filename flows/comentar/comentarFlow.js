@@ -48,12 +48,11 @@ const comentarFlow = addKeyword(`${regexComentar}`, {
     '📝 Escribe *ENVIAR* para enviar',
     '✍ Dime tu comentario, Por favor'], { capture: true }, async (ctx, { flowDynamic, endFlow, state, fallBack, gotoFlow }) => {
     const estado = state.getMyState()
-    const respuesta = ctx?.message?.conversation.toUpperCase().trim()
-    // console.log('etiqueta', etiqueta, usuario)
+
     if (ctx.body.toUpperCase().trim() === 'CANCELAR') {
       return endFlow('😀 Vuelve pronto.')
     }
-    if (respuesta === 'ENVIAR') {
+    if (ctx.body.toUpperCase().trim() === 'ENVIAR') {
       return gotoFlow(createComentFinal)
     }
     if (regexComentar.test(ctx.body)) {
