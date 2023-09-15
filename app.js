@@ -27,6 +27,19 @@ const flujoFin = addKeyword('FIN', {
   sensitive: true
 }).addAnswer('Cancelando... , buen dia')
 
+setInterval(() => {
+  const fechaActual = new Date()
+  const año = fechaActual.getFullYear()
+  const mes = fechaActual.getMonth() + 1
+  const dia = fechaActual.getDate()
+  const hora = fechaActual.getHours()
+  const minuto = fechaActual.getMinutes()
+  const segundo = fechaActual.getSeconds()
+
+  const horaImprimible = `${dia}/${mes}/${año} - ${hora}:${minuto}:${segundo}`
+  console.log('Fecha Actual', horaImprimible)
+}, 30000)
+
 const main = async () => {
   const adapterDB = new MockAdapter()
   const adapterFlow = createFlow([
