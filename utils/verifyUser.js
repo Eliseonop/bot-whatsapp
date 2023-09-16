@@ -13,9 +13,9 @@ async function verifyUser (ctx, endFlow, flowDynamic, state, welcom) {
         usuario
       })
     }
-    console.log(`Si tiene permisos \n${usuario.name} : ${ctx.from}\n Mensaje: ${ctx.body} `)
+    console.log(`Si tiene permisos \n Nombre: ${usuario.name}\n Numero : ${ctx.from}\n Mensaje: ${ctx.body} `)
   } else {
-    console.log(`No tiene permisos \n${ctx?.verifiedBizName} : ${ctx.from}\n Mensaje: ${ctx.body}`)
+    console.log(`No tiene permisos \n Nombre: ${ctx?.verifiedBizName}\n Numero : ${ctx.from}\n Mensaje: ${ctx.body} `)
 
     await flowDynamic('🤨 El Usuario no tiene permisos')
     return endFlow('Adios')
