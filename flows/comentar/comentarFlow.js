@@ -16,80 +16,88 @@ const comentarFlow = addKeyword(`${regexComentar}`, {
   })
   . addAction(async (ctx, { flowDynamic, state, endFlow }) => {
     // console.log('soy el ctx', ctx)
+    try {
+      const texto = ctx.body
+      const arrayDePalabras = texto.split(' ')
+      const miState = state.getMyState()
 
-    const texto = ctx.body
-    const arrayDePalabras = texto.split(' ')
-    const miState = state.getMyState()
+      state.update({
+        ...miState,
+        etiqueta: arrayDePalabras[1],
+        comentario: ''
+      })
 
-    state.update({
-      ...miState,
-      etiqueta: arrayDePalabras[1],
-      comentario: ''
-    })
+      // const miState2 = state.getMyState()
+      // console.log('soy el miState2', miState2)
 
-    // const miState2 = state.getMyState()
-    // console.log('soy el miState2', miState2)
+      const respuesta = await getReporteByCode(arrayDePalabras[1])
 
-    const respuesta = await getReporteByCode(arrayDePalabras[1])
+      if (respuesta.errorMessage) {
+        return endFlow('🙄 El Reporte no ha sido encontrado.')
+      }
 
-    if (respuesta.errorMessage) {
-      return endFlow('🙄 El Reporte no ha sido encontrado.')
-    }
+      const dataProcesada = procesarConComentario(respuesta)
 
-    const dataProcesada = procesarConComentario(respuesta)
-
-    if (dataProcesada) {
-      await flowDynamic('🧐 Este es el *Reporte* al cual agregarás un *comentario*...')
-      await flowDynamic(`${dataProcesada}`)
-    } else {
-      await flowDynamic('🤷‍♂️ No hay comentarios disponibles')
+      if (dataProcesada) {
+        await flowDynamic('🧐 Este es el *Reporte* al cual agregarás un *comentario*...')
+        await flowDynamic(`${dataProcesada}`)
+      } else {
+        await flowDynamic('🤷‍♂️ No hay comentarios disponibles')
+      }
+    } catch (error) {
+      console.log('Error en comentarFlow ')
+      console.log('Mensaje', error)
     }
   }).addAnswer(['❌ Escribe *CANCELAR* para *salir*.',
     '📝 Escribe *ENVIAR* para enviar',
     '✍ Dime tu comentario, Por favor'], { capture: true }, async (ctx, { flowDynamic, endFlow, state, fallBack, gotoFlow }) => {
     const estado = state.getMyState()
+    try {
+      if (ctx.body.toUpperCase().trim() === 'CANCELAR') {
+        return endFlow('😀 Vuelve pronto.')
+      }
+      if (ctx.body.toUpperCase().trim() === 'ENVIAR') {
+        return gotoFlow(createComentFinal)
+      }
+      if (regexComentar.test(ctx.body)) {
+        return fallBack('🤔 No me envies el comando, intentalo de nuevo.')
+      }
 
-    if (ctx.body.toUpperCase().trim() === 'CANCELAR') {
-      return endFlow('😀 Vuelve pronto.')
-    }
-    if (ctx.body.toUpperCase().trim() === 'ENVIAR') {
-      return gotoFlow(createComentFinal)
-    }
-    if (regexComentar.test(ctx.body)) {
-      return fallBack('🤔 No me envies el comando, intentalo de nuevo.')
-    }
-
-    if (ctx.message?.conversation) {
-      state.update({
-        comentario: `${estado.comentario}${estado.comentario.length > 0 ? '\n' : ''}` + ctx.message?.conversation
-      })
-    }
-    if (ctx.message?.imageMessage) {
-      const buffer = await downloadMediaMessage(ctx, 'buffer')
-      // console.log('si hay imagen', buffer)
-      const mimeType = ctx.message.imageMessage?.mimetype
-
-      if (estado?.imagenesComent && estado?.imagenesComent.length > 0) {
+      if (ctx.message?.conversation) {
         state.update({
-          ...state.getMyState(),
-          imagenesComent: [...estado.imagenesComent, { buffer, mimeType }]
-        })
-      } else {
-        // console.log('soy una imagen', ctx)
-        state.update({
-          ...state.getMyState(),
-          imagenesComent: [{ buffer, mimeType }]
+          comentario: `${estado.comentario}${estado.comentario.length > 0 ? '\n' : ''}` + ctx.message?.conversation
         })
       }
-      if (ctx.message?.imageMessage?.caption) {
-        state.update({
-          ...state.getMyState(),
-          comentario: `${estado.comentario}${estado.comentario.length > 0 ? '\n' : ''}` + ctx.message?.imageMessage?.caption
-        })
+      if (ctx.message?.imageMessage) {
+        const buffer = await downloadMediaMessage(ctx, 'buffer')
+        // console.log('si hay imagen', buffer)
+        const mimeType = ctx.message.imageMessage?.mimetype
+
+        if (estado?.imagenesComent && estado?.imagenesComent.length > 0) {
+          state.update({
+            ...state.getMyState(),
+            imagenesComent: [...estado.imagenesComent, { buffer, mimeType }]
+          })
+        } else {
+          // console.log('soy una imagen', ctx)
+          state.update({
+            ...state.getMyState(),
+            imagenesComent: [{ buffer, mimeType }]
+          })
+        }
+        if (ctx.message?.imageMessage?.caption) {
+          state.update({
+            ...state.getMyState(),
+            comentario: `${estado.comentario}${estado.comentario.length > 0 ? '\n' : ''}` + ctx.message?.imageMessage?.caption
+          })
+        }
       }
+      // console.log('soy el 89 898 89 89 8 9 89 8 ', state.getMyState())
+      return await fallBack('Anotado, ¿Algo más?')
+    } catch (error) {
+      console.log('Error en el flow de Cerrados: reportes')
+      console.log('Mensaje', error)
     }
-    console.log('soy el 89 898 89 89 8 9 89 8 ', state.getMyState())
-    return await fallBack('Anotado, ¿Algo más?')
   })
 
 module.exports = { comentarFlow, regexComentar, createComentFinal }

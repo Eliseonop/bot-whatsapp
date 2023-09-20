@@ -4,27 +4,32 @@ const { getReporteByCode } = require('../../services/getReporteByCode')
 const { procesarConComentario } = require('./utils/procesarConComentario')
 const { verifyUser } = require('../../utils/verifyUser')
 async function handleResponse (ctx, flowDynamic, endFlow, state) {
-  const elEstado = state.getMyState()
-  if (elEstado.codigo) {
-    const respuesta = await getReporteByCode(elEstado.codigo)
+  try {
+    const elEstado = state.getMyState()
+    if (elEstado.codigo) {
+      const respuesta = await getReporteByCode(elEstado.codigo)
 
-    // console.log('data procesada', procesarConComentario(respuesta))
+      // console.log('data procesada', procesarConComentario(respuesta))
 
-    if (respuesta.errorMessage) {
-      return endFlow('🙄 El Reporte no ha sido encontrado.')
+      if (respuesta.errorMessage) {
+        return endFlow('🙄 El Reporte no ha sido encontrado.')
+      }
+
+      const dataProcesada = procesarConComentario(respuesta)
+
+      // await flowDynamic('🧐 Buscando ultimo comentario...')
+
+      if (dataProcesada) {
+        await flowDynamic(`${dataProcesada}`)
+
+        return endFlow('Gracias por usar nuestros servicios')
+      } else {
+        await flowDynamic('🤷‍♂️ No hay comentarios disponibles')
+      }
     }
-
-    const dataProcesada = procesarConComentario(respuesta)
-
-    // await flowDynamic('🧐 Buscando ultimo comentario...')
-
-    if (dataProcesada) {
-      await flowDynamic(`${dataProcesada}`)
-
-      return endFlow('Gracias por usar nuestros servicios')
-    } else {
-      await flowDynamic('🤷‍♂️ No hay comentarios disponibles')
-    }
+  } catch (error) {
+    console.log('Error ver codigo flow')
+    console.log('Error', error)
   }
 }
 
@@ -39,15 +44,20 @@ const verCodigoFlow = addKeyword(`${regexVerCodigo}`, {
     '🔎 Buscando reporte...',
     null,
     async (ctx, { state, flowDynamic, endFlow }) => {
-      const texto = ctx.body
-      const arrayDePalabras = texto.split(' ')
-      state.update({
-        codigo: arrayDePalabras[1]
-      })
+      try {
+        const texto = ctx.body
+        const arrayDePalabras = texto.split(' ')
+        state.update({
+          codigo: arrayDePalabras[1]
+        })
 
-      // const myState = state.getMyState()
-      // console.log('soy el my state', myState)
-      await handleResponse(ctx, flowDynamic, endFlow, state)
+        // const myState = state.getMyState()
+        // console.log('soy el my state', myState)
+        await handleResponse(ctx, flowDynamic, endFlow, state)
+      } catch (error) {
+        console.log('Error ver codigo flow 58')
+        console.log('Error', error)
+      }
     }
   )
 

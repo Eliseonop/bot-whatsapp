@@ -1,4 +1,6 @@
 const url = process.env.APIURL_JIRA
+const IDUSER_JIRA = process.env.IDUSER_JIRA
+
 const { default: axios } = require('axios')
 const { credentials } = require('../utils/credential')
 
@@ -10,7 +12,7 @@ async function createReport (descripcion, titulo, attachmentArray) {
       summary: titulo,
       description: descripcion
     },
-    requestParticipants: ['62028815f5d29a0068fb1dd0']
+    requestParticipants: [IDUSER_JIRA]
   }
   if (attachmentArray.length > 0) {
     data.requestFieldValues.attachment = attachmentArray

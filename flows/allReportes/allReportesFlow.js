@@ -16,22 +16,28 @@ const allReportesFlow = addKeyword(`${regexReportes}`, {
     ['Solicitando Reportes'],
     null,
     async (ctx, { endFlow, fallBack, flowDynamic }) => {
-      const data = await getAllReports('ALL_REQUESTS')
-      await flowDynamic('Los ultimos 5 con activadad fueron')
-      console.log('soy la data', data)
-      const dataReportes = await transformDataToReportsArray(data)
+      try {
+        const data = await getAllReports('ALL_REQUESTS')
+        await flowDynamic('Los ultimos 5 con activadad fueron')
+        console.log('soy la data', data)
+        const dataReportes = await transformDataToReportsArray(data)
 
-      const listaMensajes = listarMensajes(dataReportes)
+        const listaMensajes = listarMensajes(dataReportes)
 
-      console.log('la lista de los mensajes =>', listaMensajes)
+        console.log('la lista de los mensajes =>', listaMensajes)
 
-      if (listaMensajes.length > 0) {
-        listaMensajes.forEach(async a => {
-          return await flowDynamic(a)
-        })
-      } else {
-        await flowDynamic('No hay reportes disponibles')
+        if (listaMensajes.length > 0) {
+          listaMensajes.forEach(async a => {
+            return await flowDynamic(a)
+          })
+        } else {
+          await flowDynamic('No hay reportes disponibles')
+        }
+      } catch (error) {
+        console.log('Error en el flow de allReportes: reportes')
+        console.log('Mensaje', error)
       }
+
       // return await endFlow('Gracias por usar nuestros Servicios')
     }
   )

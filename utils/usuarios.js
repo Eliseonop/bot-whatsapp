@@ -1,5 +1,5 @@
 const USUARIOS = [
-  // { name: 'Test Twilio', phone: 14155238886 },
+  { name: 'Test Twilio', phone: 14155238886 },
   { name: 'Christian Quevedo', phone: 51986395011 },
   { name: 'Isaac Rivera', phone: 51967044833 },
   { name: 'Marty Inga', phone: 51944274641 },

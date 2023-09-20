@@ -19,23 +19,29 @@ const allCerradosFlow = addKeyword(`${regexCerrados}`, {
     ['Solicitando Reportes Cerrados'],
     null,
     async (ctx, { endFlow, fallBack, flowDynamic }) => {
-      const data = await getAllReports('CLOSED_REQUESTS', 5)
-      await flowDynamic('Los ultimos 5 cerrados fueron')
+      try {
+        const data = await getAllReports('CLOSED_REQUESTS', 5)
+        await flowDynamic('Los ultimos 5 cerrados fueron')
 
-      console.log('soy la data', data)
-      const dataReportes = await transformDataToReportsArray(data)
+        console.log('soy la data', data)
+        const dataReportes = await transformDataToReportsArray(data)
 
-      const listaMensajes = listarMensajes(dataReportes)
+        const listaMensajes = listarMensajes(dataReportes)
 
-      // console.log('la lista de los mensajes =>', listaMensajes)
+        // console.log('la lista de los mensajes =>', listaMensajes)
 
-      if (listaMensajes.length > 0) {
-        listaMensajes.forEach(async a => {
-          return await flowDynamic(a)
-        })
-      } else {
-        await flowDynamic('No hay reportes disponibles')
+        if (listaMensajes.length > 0) {
+          listaMensajes.forEach(async a => {
+            return await flowDynamic(a)
+          })
+        } else {
+          await flowDynamic('No hay reportes disponibles')
+        }
+      } catch (error) {
+        console.log('Error en el flow de Cerrados: reportes')
+        console.log('MEnsaje', error)
       }
+
       // return await endFlow('Gracias por usar nuestros Servicios')
     }
   )

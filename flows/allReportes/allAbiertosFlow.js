@@ -19,23 +19,30 @@ const allAbiertosFlow = addKeyword(`${regexAbiertos}`, {
     ['Solicitando Reportes Abiertos'],
     null,
     async (ctx, { endFlow, fallBack, flowDynamic }) => {
-      const data = await getAllReports('OPEN_REQUESTS')
-      await flowDynamic('Los ultimos 5 con activadad fueron')
+      console.log('Estas en el Flow de All Abiertos\n Solicitando reporters')
+      try {
+        const data = await getAllReports('OPEN_REQUESTS')
+        await flowDynamic('Los ultimos 5 con activadad fueron')
 
-      console.log('soy la data', data)
-      const dataReportes = await transformDataToReportsArray(data)
+        // console.log('soy la data', data)
+        const dataReportes = await transformDataToReportsArray(data)
 
-      const listaMensajes = listarMensajes(dataReportes)
+        const listaMensajes = listarMensajes(dataReportes)
 
-      console.log('la lista de los mensajes =>', listaMensajes)
+        console.log('la lista de los mensajes =>', listaMensajes)
 
-      if (listaMensajes.length > 0) {
-        listaMensajes.forEach(async a => {
-          return await flowDynamic(a)
-        })
-      } else {
-        await flowDynamic('No hay reportes disponibles')
+        if (listaMensajes.length > 0) {
+          listaMensajes.forEach(async a => {
+            return await flowDynamic(a)
+          })
+        } else {
+          await flowDynamic('No hay reportes disponibles')
+        }
+      } catch (error) {
+        console.log('Error en el flow de reportes abiertos: reportes')
+        console.log('Mensaje', error)
       }
+
       // return await endFlow('Gracias por usar nuestros Servicios')
     }
   )

@@ -6,27 +6,32 @@ const createReportFlow = addKeyword('%$#entrnado_createflow', {
   sensitive: true
 })
   .addAction(async (ctx, { state, endFlow }) => {
-    const elEstado = state.getMyState()
+    try {
+      const elEstado = state.getMyState()
 
-    // console.log('aqui en el estaod de ', elEstado)
+      // console.log('aqui en el estaod de ', elEstado)
 
-    if (elEstado.imagenes && elEstado.imagenes.length > 0) {
-      const respustaImagenJira = await temporalAttachment(elEstado.imagenes)
+      if (elEstado.imagenes && elEstado.imagenes.length > 0) {
+        const respustaImagenJira = await temporalAttachment(elEstado.imagenes)
 
-      if (respustaImagenJira.errorMessage) {
-        return endFlow('🙄 El Reporte no ha sido encontrado.')
+        if (respustaImagenJira.errorMessage) {
+          return endFlow('🙄 El Reporte no ha sido encontrado.')
+        }
+
+        if (respustaImagenJira.temporaryAttachments) {
+          const temporaryAttachmentIds =
+            await respustaImagenJira.temporaryAttachments.map(
+              ({ temporaryAttachmentId }) => temporaryAttachmentId
+            )
+
+          state.update({
+            idImages: temporaryAttachmentIds
+          })
+        }
       }
-
-      if (respustaImagenJira.temporaryAttachments) {
-        const temporaryAttachmentIds =
-          await respustaImagenJira.temporaryAttachments.map(
-            ({ temporaryAttachmentId }) => temporaryAttachmentId
-          )
-
-        state.update({
-          idImages: temporaryAttachmentIds
-        })
-      }
+    } catch (error) {
+      console.log('Error create Report')
+      console.log('Error', error)
     }
   })
 
